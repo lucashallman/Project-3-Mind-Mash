@@ -8,7 +8,7 @@ const resolvers = {
   Query: {
  
     me: async (_parent: any, _args: any, context: any) => {
-      // If the user is authenticated, find and return the user's information along with their thoughts
+     
       if (context.user) {
         return User.findOne({ _id: context.user._id })//.populate('thoughts');
       }
