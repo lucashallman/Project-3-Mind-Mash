@@ -7,7 +7,7 @@
     "start": "node server/server.js",
     "start:dev": "concurrently \"cd server && npm run watch\" \"wait-on tcp:3001 && cd client && npm run dev\"",
     "server": "cd server && npm start",
-    "server:dev": "cd server && npm run dev",
+    "server:dev": "cd server && npm run watch",
     "install": "cd server && npm i && cd ../client && npm i",
     "client:build": "cd client && npm run build",
     "client:dev": "cd client && npm run dev",
@@ -21,6 +21,10 @@
     "concurrently": "^8.2.2"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/dotenv": "^6.1.1",
+    "@types/jsonwebtoken": "^9.0.8",
+    "nodemon": "^3.1.9",
     "wait-on": "^7.2.0"
   }
 }

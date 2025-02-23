@@ -1,3 +1,9 @@
+
+*.DS_Store
+*node_modules
+*dist
+*package-lock.json
+*.env
 # Logs
 logs
 *.log
@@ -22,3 +28,4 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
