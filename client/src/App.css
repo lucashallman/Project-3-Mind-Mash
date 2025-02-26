@@ -15,27 +15,18 @@
 /* Sections
    ========================================================================== */
 /**
- * Remove the margin in all browsers.
- */
-body {
-  margin: 0;
-}
+
 
 /**
  * Render the `main` element consistently in IE.
  */
-main {
-  display: block;
-}
+
 
 /**
  * Correct the font size and margin on `h1` elements within `section` and
  * `article` contexts in Chrome, Firefox, and Safari.
  */
-h1 {
-  font-size: 2em;
-  margin: 0.67em 0;
-}
+
 
 /* Grouping content
    ========================================================================== */
@@ -52,16 +43,7 @@ hr {
   /* 2 */
 }
 
-/**
- * 1. Correct the inheritance and scaling of font size in all browsers.
- * 2. Correct the odd `em` font sizing in all browsers.
- */
-pre {
-  font-family: monospace, monospace;
-  /* 1 */
-  font-size: 1em;
-  /* 2 */
-}
+
 
 /* Text-level semantics
    ========================================================================== */
@@ -1277,21 +1259,23 @@ a:hover {
 .page-container {
   max-width: 1000;
   margin: 0 auto;
-  padding: 0 150px;
+  padding: 0 120px;
+  background: white; 
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2); 
 }
 
 .app-header {
   display: inline-block;
-  flex-direction: column;
   align-items: center;
   padding: 20px;
-  background-color: #4096ff; /* Header background */
-  color: white;
+  background-color: #46467a; /* Header background */
+  color: #e0dffd;
   margin-bottom: 20px;  /* Add spacing below the header */
 }
 
 .app-nav {
   margin-top: 10px;
+  padding: ;
 }
 
 .nav-links {
@@ -1302,7 +1286,7 @@ a:hover {
 }
 
 .nav-links li {
-  display: inline;
+  display: inline-block;
 }
 
 .nav-links a {
@@ -1312,19 +1296,80 @@ a:hover {
 }
 
 .nav-links .active {
-  color: yellow; /* Active link color */
+  color: #FFc212; /* Active link color */
 }
 
 /* Content section style */
 .app-content {
   padding: 20px;
-  min-height: 60vh; /* Ensures enough height for content */
+  min-height: 60vh;
+  background-color: #7766c6  /* Ensures enough height for content */
 }
 
 /* Footer styling */
 .app-footer {
-  background-color: #4096ff;
+  background-color: #46467a;
   color: white;
-  padding: 10px 0;
+  padding: 0;
   text-align: center;
+}
+.app-content {
+  padding-top: 80px;  /* Adjust this value based on your header's height */
+  min-height: 60vh; /* Keeps content area tall enough */
+}
+
+.home-container {
+  padding-top: 40px;
+  margin-top: 20px;
+}
+
+.button-container {
+  display: flex;
+  gap: 20px; /* Space between buttons */
+  align-content: center;
+  justify-content: center;
+  margin: 30px;
+ 
+}
+.home-button-trivia {
+  background-color: #f980c3;
+  padding: 20px;
+  font-size: 80px;
+  border-radius: 50px;
+  box-shadow: 0 4px 6px rgba(249, 128, 195, 0.5);
+  color: #FFc212
+} 
+
+.home-button-riddle {
+  background-color: #f980c3;
+  padding: 20px;
+  font-size: 80px;
+  border-radius: 50px;
+  box-shadow: 0 4px 6px rgba(249, 128, 195, 0.5);
+  color: #FFc212
+}
+.home-button-trivia:hover {
+  transform: scale(1.05);    /* Slightly enlarge on hover */
+  box-shadow: 0 8px 12px rgba(249, 128, 195, 0.6); /* Deeper shadow on hover */
+  color: #FFC212;
+}
+.home-button-trivia:active {
+  transform: scale(0.98);    /* Subtle press effect */
+}
+.home-button-riddle:hover {
+  transform: scale(1.05);    /* Slightly enlarge on hover */
+  box-shadow: 0 8px 12px rgba(249, 128, 195, 0.6); /* Deeper shadow on hover */
+  color: #FFC212;
+}
+.home-button-riddle:active {
+  transform: scale(0.98);    /* Subtle press effect */
+}
+
+.app-name {
+  font-family: "Bangers", sans-serif;
+  font-size: 80px; 
+  text-align: center;
+  color: #E0dffd; 
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3); 
+  letter-spacing: 3px;
 }

@@ -13,26 +13,25 @@ import React from 'react';
 const { Header, Footer, Content } = Layout;
 
 const headerStyle: React.CSSProperties = {
-  textAlign: 'center',
-  color: '#fff',
-  height: 64,
+  textAlign: 'left',
+  height: 150,
   paddingInline: 48,
-  lineHeight: '64px',
-  backgroundColor: '#4096ff',
+  lineHeight: '68px',
+  backgroundColor: '#46467A',
 };
 
 const contentStyle: React.CSSProperties = {
   textAlign: 'center',
   minHeight: 'calc(100vh - 128px)',  // Fills remaining space
   padding: '24px',
-  backgroundColor: '#0958d9',
-  color: '#fff',
+  backgroundColor: '#7766c6',
+  color: '#e0DFFD',
 };
 
 const footerStyle: React.CSSProperties = {
-  textAlign: 'center',
-  color: '#fff',
-  backgroundColor: '#4096ff',
+  textAlign: 'left',
+  color: '#e0dffd',
+  backgroundColor: '#46467a',
   height: 64,
   lineHeight: '64px',
 };
