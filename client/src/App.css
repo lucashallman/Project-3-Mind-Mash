@@ -1318,6 +1318,8 @@ a:hover {
   min-height: 60vh; /* Keeps content area tall enough */
 }
 
+/* Home styling */
+
 .home-container {
   padding-top: 40px;
   margin-top: 20px;
@@ -1363,6 +1365,29 @@ a:hover {
 }
 .home-button-riddle:active {
   transform: scale(0.98);    /* Subtle press effect */
+}
+
+/* trivia styling */
+
+.trivia-answer {
+  border: #FFc212  2px solid;
+  border-radius: 10px;
+
+  padding: 2.5% 30%;
+  background-color: #46467a;
+}
+
+.selected {
+  border: #FFc212  2px solid;
+  border-radius: 10px;
+
+  padding: 2.5% 30%;
+  background-color: #E0dffd;
+  color: #46467a;
+}
+
+input[type='radio'] {
+  display: none;
 }
 
 .app-name {
