@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import { fetchTrivia, randomizeAnswers, validateAnswer } from '../services/triviaService';
 import { ITrivia } from '../interfaces/Trivia'; 
@@ -125,3 +126,4 @@ const Trivia = () => {
 }
 
 export default Trivia;
+
