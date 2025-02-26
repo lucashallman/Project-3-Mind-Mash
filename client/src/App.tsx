@@ -1,7 +1,7 @@
 import './App.css';
 
 
-import { Outlet } from 'react-router-dom';
+// import { Outlet } from 'react-router-dom';
 import {
   ApolloClient,
   InMemoryCache,
@@ -10,11 +10,8 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 //import Trivia from './pages/Trivia';
-import Navbar from './components/Navbar';
-const client = new ApolloClient({
-  uri: '/graphql',
-  cache: new InMemoryCache(),
-});
+// import Navbar from './components/Navbar';
+
 
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
@@ -85,7 +82,7 @@ const App: React.FC = () => {
 
 
     <ApolloProvider client={client}>
-    <Router>
+
       <div className="page-container">
       <Layout>
         <Header style={headerStyle}>
@@ -106,7 +103,6 @@ const App: React.FC = () => {
         </Footer>
       </Layout>
       </div>
-    </Router>
 
 
 

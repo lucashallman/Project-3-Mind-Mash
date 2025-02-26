@@ -39,7 +39,8 @@ const Riddles = () => {
         <div>
             <h1>Riddle</h1>
             <button onClick={() => window.location.reload()}>Skip</button>
-            <h3>{riddle?.riddle}</h3>
+            <h3>{riddle?.title}</h3>
+            <p>{riddle?.question}</p>
             <input 
                 type="text" 
                 placeholder="Enter your answer" 
