@@ -1,5 +1,5 @@
 export interface IRiddle {
     title: string;
-    question: string;
+    riddle: string;
     answer: string;
 }

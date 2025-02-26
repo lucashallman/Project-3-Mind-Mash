@@ -14,13 +14,16 @@ import { setContext } from '@apollo/client/link/context';
 
 
 
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import AppHeader from './components/Header';
 import AppFooter from './components/Footer';  
+
 import Home from './pages/Home';
 import Leaderboard from './pages/Leaderboard';
 import Signuplogin from './pages/Signuplogin';
 import Trivia from './pages/Trivia';
+import Riddles from './pages/Riddles';
+
 import { Layout } from 'antd';
 import React from 'react';
 
@@ -95,6 +98,7 @@ const App: React.FC = () => {
             <Route path="/Leaderboard" element={<Leaderboard />} />
             <Route path="/Signuplogin" element={<Signuplogin />} />
             <Route path="/Trivia" element={<Trivia />} />
+            <Route path = "/Riddle" element={<Riddles />} />
           </Routes>
         </Content>
 
@@ -103,8 +107,6 @@ const App: React.FC = () => {
         </Footer>
       </Layout>
       </div>
-
-
 
     </ApolloProvider>
   );
