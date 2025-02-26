@@ -1,8 +1,18 @@
-import { Link } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
-import { QUERY_MATCHUPS } from '../utils/queries';
 
 
 
+
+
+const Home = () => {
+
+
+
+
+  return (
+    <div>
+      <h1>Welcome to Mind Mash!</h1>
+    </div>
+  );    
+};
 
 export default Home;
