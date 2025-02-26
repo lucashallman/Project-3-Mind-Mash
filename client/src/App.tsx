@@ -1,7 +1,7 @@
 import './App.css';
 
 
-import { Outlet } from 'react-router-dom';
+// import { Outlet } from 'react-router-dom';
 import {
   ApolloClient,
   InMemoryCache,
@@ -10,20 +10,20 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 //import Trivia from './pages/Trivia';
-import Navbar from './components/Navbar';
-const client = new ApolloClient({
-  uri: '/graphql',
-  cache: new InMemoryCache(),
-});
+// import Navbar from './components/Navbar';
 
 
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
+import { Route, Routes } from 'react-router-dom';
 import AppHeader from './components/Header';
 import AppFooter from './components/Footer';  
+
 import Home from './pages/Home';
 import Leaderboard from './pages/Leaderboard';
 import Signuplogin from './pages/Signuplogin';
 import Trivia from './pages/Trivia';
+import Riddles from './pages/Riddles';
+
 import { Layout } from 'antd';
 import React from 'react';
 
@@ -85,7 +85,7 @@ const App: React.FC = () => {
 
 
     <ApolloProvider client={client}>
-    <Router>
+
       <div className="page-container">
       <Layout>
         <Header style={headerStyle}>
@@ -98,6 +98,7 @@ const App: React.FC = () => {
             <Route path="/Leaderboard" element={<Leaderboard />} />
             <Route path="/Signuplogin" element={<Signuplogin />} />
             <Route path="/Trivia" element={<Trivia />} />
+            <Route path = "/Riddle" element={<Riddles />} />
           </Routes>
         </Content>
 
@@ -106,9 +107,6 @@ const App: React.FC = () => {
         </Footer>
       </Layout>
       </div>
-    </Router>
-
-
 
     </ApolloProvider>
   );

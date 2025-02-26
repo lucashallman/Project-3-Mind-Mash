@@ -14,24 +14,11 @@ const Home = () => {
                 </p>
             </section>
             <div className="button-container">
-                <Link to="/play-trivia" className="home-button-trivia">Play Trivia</Link>
-                <Link to="/solve-riddle" className="home-button-riddle">Solve a Riddle</Link>
+                <Link to="/Trivia" className="home-button-trivia">Play Trivia</Link>
+                <Link to="/Riddle" className="home-button-riddle">Solve a Riddle</Link>
             </div>
         </div>
     )
-};
-
-
-const Home = () => {
-
-
-
-
-  return (
-    <div>
-      <h1>Welcome to Mind Mash!</h1>
-    </div>
-  );    
 };
 
 export default Home;
