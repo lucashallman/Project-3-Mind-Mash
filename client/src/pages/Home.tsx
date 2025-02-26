@@ -14,8 +14,8 @@ const Home = () => {
                 </p>
             </section>
             <div className="button-container">
-                <Link to="/play-trivia" className="home-button">Play Trivia</Link>
-                <Link to="/solve-riddle" className="home-button">Solve a Riddle</Link>
+                <Link to="/play-trivia" className="home-button-trivia">Play Trivia</Link>
+                <Link to="/solve-riddle" className="home-button-riddle">Solve a Riddle</Link>
             </div>
         </div>
     )
