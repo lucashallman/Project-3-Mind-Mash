@@ -1,4 +1,7 @@
 import './App.css';
+
+
+import { Outlet } from 'react-router-dom';
 import {
   ApolloClient,
   InMemoryCache,
@@ -6,6 +9,14 @@ import {
   createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
+//import Trivia from './pages/Trivia';
+import Navbar from './components/Navbar';
+const client = new ApolloClient({
+  uri: '/graphql',
+  cache: new InMemoryCache(),
+});
+
+
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import AppHeader from './components/Header';
 import AppFooter from './components/Footer';  
@@ -15,6 +26,7 @@ import Signuplogin from './pages/Signuplogin';
 import Trivia from './pages/Trivia';
 import { Layout } from 'antd';
 import React from 'react';
+
 
 
 const { Header, Footer, Content } = Layout;
@@ -69,6 +81,10 @@ const client = new ApolloClient({
 
 const App: React.FC = () => {
   return (
+
+
+
+
     <ApolloProvider client={client}>
     <Router>
       <div className="page-container">
@@ -92,6 +108,9 @@ const App: React.FC = () => {
       </Layout>
       </div>
     </Router>
+
+
+
     </ApolloProvider>
   );
 };

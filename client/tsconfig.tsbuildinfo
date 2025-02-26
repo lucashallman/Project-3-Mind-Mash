@@ -1,1 +1,4 @@
+
+
 {"root":["./src/app.tsx","./src/main.tsx","./src/components/header.tsx","./src/components/navigation.tsx","./src/models/model.ts","./src/pages/home.tsx","./src/pages/leaderboard.tsx","./src/pages/signuplogin.tsx","./src/pages/trivia.tsx","./src/utils/mutations.ts","./src/utils/queries.ts"],"errors":true,"version":"5.7.3"}
+
