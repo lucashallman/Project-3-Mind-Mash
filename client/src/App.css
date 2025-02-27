@@ -1260,7 +1260,7 @@ a:hover {
   max-width: 1000;
   margin: 0 auto;
   padding: 0 120px;
-  background: white; 
+  background: #2f2f52; 
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2); 
 }
 
@@ -1275,7 +1275,7 @@ a:hover {
 
 .app-nav {
   margin-top: 10px;
-  padding: ;
+  /* padding: ; */
 }
 
 .nav-links {
@@ -1373,21 +1373,92 @@ a:hover {
   border: #FFc212  2px solid;
   border-radius: 10px;
 
-  padding: 2.5% 30%;
+  padding-top: 1vh;
+  margin: .5vb;
+  width: 40vw;
+  height: 7vh;
+
   background-color: #46467a;
+  font-size: 20px;
 }
 
 .selected {
-  border: #FFc212  2px solid;
+  border: #46467a  2px solid;
   border-radius: 10px;
 
   padding: 2.5% 30%;
   background-color: #E0dffd;
   color: #46467a;
+  scale: 1.1;
+  font-size: 30px;
 }
 
 input[type='radio'] {
   display: none;
+}
+
+.next-button {
+  background-color: #f980c3;
+  padding: 10px 30px;
+  margin: 1vb;
+  font-size: 40px;
+  border-radius: 25px;
+  box-shadow: 0 4px 6px rgba(249, 128, 195, 0.5);
+  color: #FFc212
+} 
+
+.next-button:hover {
+  transform: scale(1.05);    /* Slightly enlarge on hover */
+  box-shadow: 0 8px 12px rgba(249, 128, 195, 0.6); /* Deeper shadow on hover */
+  color: #FFC212;
+}
+
+.next-button:active {
+  transform: scale(0.98);    /* Subtle press effect */
+}
+
+.counter {
+  font-size: 30px;
+}
+
+/* profile styling */
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+
+}
+
+.profilecard {
+  border: #46467a solid 1px;
+  border-radius: 1vb;
+  border-color: #2c2c4b;
+  width: 60vw;
+
+  background-color: #46467a;
+}
+
+.triviapoints {
+  width: 58vw;
+}
+
+.accuracy {
+  width: 58vw;
+}
+
+/* animation classes */
+
+.anim-fadein {
+  animation: fadeIn 2s;
+}
+
+/* animations */
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 100; }
 }
 
 .app-name {

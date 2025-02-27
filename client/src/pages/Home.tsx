@@ -6,7 +6,7 @@ import { QUERY_MATCHUPS } from '../utils/queries';*/
 
 const Home = () => {
     return (
-        <div className="home-container">
+        <div className="home-container anim-fadein">
             <h1>Welcome to Mind Mash!</h1>
             <section className="description">
                 <p>

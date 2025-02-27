@@ -127,7 +127,7 @@ const Trivia = () => {
                 <div>
                     <h3>{trivia.results[0].question}</h3>
                     {answers.map((answer, index) => (
-                        <div key={index} className='trivia'>
+                        <div key={index} className='trivia anim-fadein'>
                             <input
                                 type="radio"
                                 name="answer"
@@ -141,9 +141,9 @@ const Trivia = () => {
                     {answerCorrect !== undefined && (
                         <p>{answerCorrect ? 'Correct!' : `Incorrect! ${trivia.results[0].correct_answer} is the right answer`}</p>
                     )}
-                    <button onClick={handleNext}>Next</button>
-                    <p>Correct: {numberCorrect}</p>
-                    <p>Incorrect: {numberIncorrect}</p>
+                    <button onClick={handleNext} className='next-button'>Next</button>
+                    <p className='correct-count counter'>Correct: {numberCorrect}</p>
+                    <p className='incorrect-count counter'>Incorrect: {numberIncorrect}</p>
                 </div>
             ) : (
                 <p>Loading...</p>

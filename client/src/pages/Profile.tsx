@@ -6,7 +6,7 @@ import { QUERY_ME } from "../utils/queries";
 const Profile = () => {
 
     const { userId } = useParams();
-
+    console.log('uid:', userId);
     const { loading, data } = useQuery(QUERY_ME, {
         variables: { profileId: userId },
     });
@@ -33,16 +33,16 @@ const Profile = () => {
         return 0;
     }
 
-    return(
-        <>
-            <h2 className="card">
+    return (
+        <div className="profile-container anim-fadein">
+            <h2 className="profilecard username">
                 {profile.username}
             </h2>
-            <ul>
-                <li>Trivia Points: {profile.triviapoints}</li>
-                <li>Quiz Accuracy: {QuizAccuracy()}</li>
-            </ul>
-        </>
+
+            <p className="profilecard triviapoints">Trivia Points: {profile.triviapoints}</p>
+            <p className="profilecard accuracy">Quiz Accuracy: {QuizAccuracy()}%</p>
+
+        </div>
     )
 }
 
