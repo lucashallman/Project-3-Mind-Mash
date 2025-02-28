@@ -6,6 +6,11 @@ interface IUser extends Document {
   username: string;
   email: string;
   password: string;
+  triviapoints: number;
+  correctTriviaCount: number;
+  totalTriviaCount: number;
+  correctRiddleCount: number;
+  totalRiddleCount: number;
   //thoughts: Schema.Types.ObjectId[];
   isCorrectPassword(password: string): Promise<boolean>;
 }
@@ -29,6 +34,26 @@ const userSchema = new Schema<IUser>(
       type: String,
       required: true,
       minlength: 5,
+    },
+    triviapoints: {
+      type: Number,
+      required: false,
+    },
+    correctTriviaCount: {
+      type: Number,
+      required: false,
+    },
+    totalTriviaCount: {
+      type: Number,
+      required: false,
+    },
+    correctRiddleCount: {
+      type: Number,
+      required: false,
+    },
+    totalRiddleCount: {
+      type: Number,
+      required: false,
     },
     // thoughts: [
     //   {
