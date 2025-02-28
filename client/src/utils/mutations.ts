@@ -7,6 +7,20 @@ mutation AddUser($input: UserInput!) {
   }
 }
 `
+export const UPDATE_USER =gql`
+mutation updateUserScore($input: UserUpdateArgs!) {
+  updateUserScore(input: $input) {
+    _id
+    username
+    email
+    triviapoints
+    correctTriviaCount
+    totalTriviaCount
+    correctRiddleCount
+    totalRiddleCount
+  }
+}
+`
 export const LOGIN_USER =gql`
 mutation Login($email: String!, $password: String!) {
   login(email: $email, password: $password) {

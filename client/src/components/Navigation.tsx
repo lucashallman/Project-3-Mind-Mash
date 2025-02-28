@@ -22,7 +22,7 @@ const Navigation = () => {
         }
         setUser(userData);
         console.log(userData)
-    }, [])
+    }, [data])
 
     const userNavLink = user ? `/Profile/${user.username}` : `/login`
 
