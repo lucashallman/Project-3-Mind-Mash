@@ -5,7 +5,6 @@ import { QUERY_ME1 } from '../utils/queries';
 import { fetchTrivia, randomizeAnswers, validateAnswer, convertSpecialCharacterCodes } from '../services/triviaService';
 import { ITrivia } from '../interfaces/Trivia';
 import { IUser } from '../interfaces/User';
-import { DotNetOutlined } from '@ant-design/icons';
 
 const Trivia = () => {
     const [trivia, setTrivia] = useState<ITrivia>();
