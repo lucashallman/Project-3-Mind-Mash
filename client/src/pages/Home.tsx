@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-/*import { useQuery } from '@apollo/client';
-import { QUERY_MATCHUPS } from '../utils/queries';*/
+import { useQuery } from '@apollo/client';
+import { QUERY_ME } from '../utils/queries';
 
 
 const Home = () => {
+    const { data } = useQuery(QUERY_ME);
+    const user = data?.me;
+    
 
     // !! TEMPORARY USERNAME MOCK !! DO NOT SHIP !! REMOVE BEFORE MONDAY !!
     const [username, setUsername] = useState<string>('username_def')
@@ -30,7 +33,9 @@ const Home = () => {
 
     return (
         <div className="home-container anim-fadein">
-            <h1>Welcome to Mind Mash!</h1>
+                <h1>Welcome to Mind Mash {user ? user.username : ''}!</h1>
+
+
             <section className="description">
                 <p>
                     Challenge yourself with exciting trivia questions or brain teasing riddles and climb the leaderboards!      

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { fetchTrivia, randomizeAnswers, validateAnswer } from '../services/triviaService';
+import { fetchTrivia, randomizeAnswers, validateAnswer, convertSpecialCharacterCodes } from '../services/triviaService';
 import { ITrivia } from '../interfaces/Trivia';
 
 const Trivia = () => {
@@ -96,90 +96,6 @@ const Trivia = () => {
             });
         }
     };
-    const convertSpecialCharacterCodes = (response: any) => {
-        response.results.forEach((result: any) => {
-            result.question = result.question.replace(/&quot;/g, '"')
-                .replace(/&#039;/g, "'")
-                .replace(/&amp;/g, "&")
-                .replace(/&lt;/g, "<")
-                .replace(/&gt;/g, ">")
-                .replace(/&rsquo;/g, "'")
-                .replace(/&iuml;/g, "ï")
-                .replace(/&eacute;/g, "é")
-                .replace(/&aacute;/g, "á")
-                .replace(/&ouml;/g, "ö")
-                .replace(/&auml;/g, "ä")
-                .replace(/&uuml;/g, "ü")
-                .replace(/&shy;/g, "-")
-                .replace(/&ntilde;/g, "ñ")
-                .replace(/&iquest;/g, "¿")
-                .replace(/&oacute;/g, "ó")
-                .replace(/&uacute;/g, "ú")
-                .replace(/&egrave;/g, "è")
-                .replace(/&igrave;/g, "ì")
-                .replace(/&ograve;/g, "ò")
-                .replace(/&ugrave;/g, "ù")
-                .replace(/&ccedil;/g, "ç")
-                .replace(/&iexcl;/g, "¡")
-                .replace(/&iacute;/g, "í")
-
-            result.correct_answer = result.correct_answer.replace(/&quot;/g, '"')
-                .replace(/&#039;/g, "'")
-                .replace(/&amp;/g, "&")
-                .replace(/&lt;/g, "<")
-                .replace(/&gt;/g, ">")
-                .replace(/&rsquo;/g, "'")
-                .replace(/&iuml;/g, "ï")
-                .replace(/&eacute;/g, "é")
-                .replace(/&aacute;/g, "á")
-                .replace(/&ouml;/g, "ö")
-                .replace(/&auml;/g, "ä")
-                .replace(/&uuml;/g, "ü")
-                .replace(/&ntilde;/g, "ñ")
-                .replace(/&shy;/g, "-")
-                .replace(/&iquest;/g, "¿")
-                .replace(/&oacute;/g, "ó")
-                .replace(/&uacute;/g, "ú")
-                .replace(/&egrave;/g, "è")
-                .replace(/&igrave;/g, "ì")
-                .replace(/&ograve;/g, "ò")
-                .replace(/&ugrave;/g, "ù")
-                .replace(/&ccedil;/g, "ç")
-                .replace(/&iexcl;/g, "¡")
-                .replace(/&iquest;/g, "¿")
-                .replace(/&iacute;/g, "í")
-
-            result.incorrect_answers = result.incorrect_answers.map((answer: string) =>
-                answer.replace(/&quot;/g, '"')
-                    .replace(/&#039;/g, "'")
-                    .replace(/&amp;/g, "&")
-                    .replace(/&lt;/g, "<")
-                    .replace(/&gt;/g, ">")
-                    .replace(/&rsquo;/g, "'")
-                    .replace(/&iuml;/g, "ï")
-                    .replace(/&eacute;/g, "é")
-                    .replace(/&aacute;/g, "á")
-                    .replace(/&ouml;/g, "ö")
-                    .replace(/&auml;/g, "ä")
-                    .replace(/&uuml;/g, "ü")
-                    .replace(/&ntilde;/g, "ñ")
-                    .replace(/&shy;/g, "-")
-                    .replace(/&iexcl;/g, "¡")
-                    .replace(/&iquest;/g, "¿")
-                    .replace(/&oacute;/g, "ó")
-                    .replace(/&uacute;/g, "ú")
-                    .replace(/&egrave;/g, "è")
-                    .replace(/&igrave;/g, "ì")
-                    .replace(/&ograve;/g, "ò")
-                    .replace(/&ugrave;/g, "ù")
-                    .replace(/&ccedil;/g, "ç")
-                    .replace(/&iacute;/g, "í")
-                    
-
-            );
-        });
-    }
-
 
     const handleNext = () => {
         setAnswerCorrect(undefined);
@@ -352,4 +268,3 @@ const Trivia = () => {
 }
 
 export default Trivia;
-

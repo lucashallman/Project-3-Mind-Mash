@@ -1,14 +1,39 @@
 import {  User } from '../models/index.js';
 import Leaderboard from '../models/Leaderboard.js';
 import { signToken, AuthenticationError } from '../utils/auth.js'; 
+interface User {
+  _id: string;
+  name: string;
+  email: string;
+  password: string;
+  correctTriviaCount?: number;
+  totalTriviaCount?: number;
+  correctRiddleCount?: number;
+  totalRiddleCount?: number;
+}
+
+interface AddUserArgs {
+  input:{
+    username: string;
+    email: string;
+    password: string;
+  }
+}
+
+interface LoginUserArgs {
+  email: string;
+  password: string;
+}
 
 
-
+interface Context {
+  user?: User;
+}
 
 const resolvers = {
   Query: {
  
-    me: async (_parent: any, _args: any, context: any) => {
+    me: async (_parent: any, _args: any, context: Context): Promise<User | null> => {
      
       if (context.user) {
         return User.findOne({ _id: context.user._id })//.populate('thoughts');
@@ -33,7 +58,7 @@ const resolvers = {
     },
   },
   Mutation: {
-    addUser: async (_parent: any, { input }: any) => {
+    addUser: async (_parent: any, { input }: AddUserArgs) => {
       // Create a new user with the provided username, email, and password
       const user = await User.create({ ...input });
     
@@ -44,7 +69,7 @@ const resolvers = {
       return { token, user };
     },
     
-    login: async (_parent: any, { email, password }: any) => {
+    login: async (_parent: any, { email, password }: LoginUserArgs) => {
       // Find a user with the provided email
       const user = await User.findOne({ email });
     
