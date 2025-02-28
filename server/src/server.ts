@@ -2,6 +2,7 @@ import express from 'express';
 import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
 import path from 'path';
+import { Request, Response } from 'express';
 
 import { typeDefs, resolvers } from './schemas/index.js';
 import db from './config/connection.js';
@@ -28,7 +29,7 @@ const startApolloServer = async () => {
   if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '../../client/dist')));
 
-    app.get('*', (_req, res) => {
+    app.get('*', (_req: Request, res: Response) => {
       res.sendFile(path.join(__dirname, '../../client/dist/index.html'));
     });
   }
