@@ -1,7 +1,7 @@
 import express from 'express';
 import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
-// import path from 'path';
+import { __dirname, join } from './utils/path.js';
 import { Request, Response } from 'express';
 
 import { typeDefs, resolvers } from './schemas/index.js';
@@ -27,10 +27,10 @@ const startApolloServer = async () => {
 
   // if we're in production, serve client/dist as static assets
   if (process.env.NODE_ENV === 'production') {
-    app.use(express.static('../../client/dist'));
+    app.use(express.static((__dirname + '../../client/dist')));
 
     app.get('*', (_req: Request, res: Response) => {
-      res.sendFile('../../client/dist/index.html');
+      res.sendFile(join(__dirname + '../../client/dist/index.html'));
     });
   }
   
