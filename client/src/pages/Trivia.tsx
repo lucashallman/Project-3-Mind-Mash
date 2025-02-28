@@ -253,7 +253,7 @@ const Trivia = () => {
                                 name="answer"
                                 value={answer}
                                 onChange={() => handleAnswer(answer)}
-                                // style={{ marginRight: '15px', transform: 'scale(1.5)' }}
+                                style={{ marginRight: '15px', transform: 'scale(1.5)' }}
                             />
                             <label
                                 htmlFor={`answer-${index}`}
