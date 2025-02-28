@@ -41,7 +41,7 @@ const router = createBrowserRouter([
         element: <Stats />
       },
       {
-        path: 'Leader',
+        path: 'Leaderboard',
         element: <Leaderboard />
       }
 
