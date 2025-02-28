@@ -1386,9 +1386,8 @@ a:hover {
   border: #46467a  2px solid;
   border-radius: 10px;
 
-  padding: 2.5% 30%;
+  /* padding: 2.5% 30%; */
   background-color: #E0dffd;
-  color: #46467a;
   scale: 1.1;
   font-size: 30px;
 }

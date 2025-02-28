@@ -14,3 +14,13 @@ mutation Login($email: String!, $password: String!) {
   }
 }
 `
+
+export const ADD_LEADERBOARD_ENTRY = gql`
+  mutation AddScore($username: String!, $score: Int!) {
+    addScore(username: $username, score: $score) {
+      id
+      username
+      score
+    }
+  }
+`
