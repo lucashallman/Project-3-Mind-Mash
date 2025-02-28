@@ -11,7 +11,7 @@ const Trivia = () => {
     const [questionNumber, setQuestionNumber] = useState<number>(0);
     const [currentCorrect, setCurrentCorrect] = useState<number>(0);
     const [showResults, setShowResults] = useState<boolean>(false);
-    const [selectedAnswer, setSelectedAnswer] = useState<string>('');
+    // const [selectedAnswer, setSelectedAnswer] = useState<string>('');
     const [currentIncorrect, setCurrentIncorrect] = useState<number>(0);
     useEffect(() => {
         const storedNumberCorrect = localStorage.getItem('numberCorrect');
@@ -53,16 +53,6 @@ const Trivia = () => {
         const correctAnswer = trivia?.results[questionNumber].correct_answer;
         const isCorrect = validateAnswer(selectedAnswer, correctAnswer);
         const radioButtons = document.getElementsByName('answer') as NodeListOf<HTMLInputElement>;
-
-
-        const selectedRadio = Array.from(radioButtons).find(radio => radio.value === selectedAnswer);
-        if (selectedRadio) {
-            const label = document.querySelector(`label[for='${selectedRadio.id}']`)
-            if (label) {
-                label.classList.add("selected");
-            }
-        }
-        setSelectedAnswer(selectedAnswer);
 
         if (isCorrect) {
             setAnswerCorrect(true);
@@ -114,6 +104,11 @@ const Trivia = () => {
                 .replace(/&ccedil;/g, "ç")
                 .replace(/&iexcl;/g, "¡")
                 .replace(/&iacute;/g, "í")
+                .replace(/&Eacute;/g, "É")
+                .replace(/&Aacute;/g, "Á")
+                .replace(/&Ouml;/g, "Ö")
+                .replace(/&Auml;/g, "Ä")
+                .replace(/&Uuml;/g, "Ü")
 
             result.correct_answer = result.correct_answer.replace(/&quot;/g, '"')
                 .replace(/&#039;/g, "'")
@@ -140,6 +135,11 @@ const Trivia = () => {
                 .replace(/&iexcl;/g, "¡")
                 .replace(/&iquest;/g, "¿")
                 .replace(/&iacute;/g, "í")
+                .replace(/&Eacute;/g, "É")
+                .replace(/&Aacute;/g, "Á")
+                .replace(/&Ouml;/g, "Ö")
+                .replace(/&Auml;/g, "Ä")
+                .replace(/&Uuml;/g, "Ü")
 
             result.incorrect_answers = result.incorrect_answers.map((answer: string) =>
                 answer.replace(/&quot;/g, '"')
@@ -166,6 +166,11 @@ const Trivia = () => {
                     .replace(/&ugrave;/g, "ù")
                     .replace(/&ccedil;/g, "ç")
                     .replace(/&iacute;/g, "í")
+                    .replace(/&Eacute;/g, "É")
+                    .replace(/&Aacute;/g, "Á")
+                    .replace(/&Ouml;/g, "Ö")
+                    .replace(/&Auml;/g, "Ä")
+                    .replace(/&Uuml;/g, "Ü")
                     
 
             );
@@ -175,17 +180,6 @@ const Trivia = () => {
 
     const handleNext = () => {
         setAnswerCorrect(undefined);
-
-        const selections = document.getElementsByName('answer') as NodeListOf<HTMLInputElement>;
-        const selectedRadio = Array.from(selections).find(radio => radio.value === selectedAnswer);
-        if (selectedRadio) {
-            const label = document.querySelector(`label[for='${selectedRadio.id}']`)
-            if (label) {
-                label.classList.remove("selected");
-            }
-        }
-        setSelectedAnswer('');
-
         const getTrivia = async () => {
             try {
 
@@ -194,7 +188,6 @@ const Trivia = () => {
 
                 if (!isAnyChecked) {
                     return;
-
                 }
                 if (questionNumber === 9) {
                     setQuestionNumber(0);
@@ -209,7 +202,6 @@ const Trivia = () => {
                     setAnswers(answers);
                     return;
                 }
-
                 let i = questionNumber + 1;
                 setQuestionNumber(i);
 
@@ -236,6 +228,7 @@ const Trivia = () => {
         radioButtons.forEach(radio => {
             radio.checked = false;
         });
+
     };
 
     useEffect(() => {
@@ -249,20 +242,14 @@ const Trivia = () => {
                 <div>
                     <h3>{trivia.results[questionNumber].question}</h3>
                     {answers.map((answer, index) => (
-
-
-
                         <div key={index} style={{ marginBottom: '20px', fontSize: '2em' }}>
-
                             <input
                                 type="radio"
                                 id={`answer-${index}`}
                                 name="answer"
                                 value={answer}
                                 onChange={() => handleAnswer(answer)}
-
                                 style={{ marginRight: '15px', transform: 'scale(1.5)' }}
-
                             />
                             <label
                                 htmlFor={`answer-${index}`}
@@ -271,14 +258,11 @@ const Trivia = () => {
                                     color: answerCorrect !== undefined
                                         ? answer === trivia?.results[questionNumber].correct_answer
                                             ? 'green'
-                                            : answer === selectedAnswer
+                                            : false
                                                 ? 'red'
                                                 : 'inherit'
                                         : 'inherit'
                                 }}
-
-                                className='trivia-answer'
-
                             >
                                 {answer}
                             </label>
