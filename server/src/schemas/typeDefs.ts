@@ -1,9 +1,9 @@
 const typeDefs = `
   type User {
-    _id: ID
-    username: String
-    email: String
-    password: String
+    _id: ID!
+    username: String!
+    email: String!
+    password: String!
     triviapoints: Int
     correctTriviaCount: Int
     totalTriviaCount: Int
@@ -34,6 +34,7 @@ const typeDefs = `
   type Query {
     getLeaderboard: [LeaderboardEntry]
     me: User
+    user(username: String!): User
   }
 
   type Mutation {
