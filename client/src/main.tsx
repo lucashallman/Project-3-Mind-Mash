@@ -6,6 +6,11 @@ import App from './App';
 //import ErrorPage from './pages/ErrorPage';
 import Home from './pages/Home';
 import Riddle from './pages/Riddles';
+import Profile from './pages/Profile'
+import Signup from './pages/Signuplogin';
+import Stats from './pages/Stats';
+import Leaderboard from './pages/Leaderboard';
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -22,7 +27,24 @@ const router = createBrowserRouter([
       {
         path: 'Riddle',
         element: <Riddle />
+      },
+      {
+        path: 'Profile',
+        element: <Profile />
+      },
+      {
+        path: 'Signup',
+        element: <Signup />
+      },
+      {
+        path: 'Stats',
+        element: <Stats />
+      },
+      {
+        path: 'Leaderboard',
+        element: <Leaderboard />
       }
+
     ]
   }
 ]);

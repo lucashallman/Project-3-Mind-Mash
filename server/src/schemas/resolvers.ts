@@ -1,4 +1,5 @@
 import {  User } from '../models/index.js';
+import Leaderboard from '../models/Leaderboard.js';
 import { signToken, AuthenticationError } from '../utils/auth.js'; 
 
 
@@ -14,6 +15,9 @@ const resolvers = {
       }
       // If the user is not authenticated, throw an AuthenticationError
       throw new AuthenticationError('Could not authenticate user.');
+    },
+    getLeaderboard: async () => {
+      return await Leaderboard.find().sort({ score: -1 }).limit(10);
     },
   },
   Mutation: {
@@ -51,6 +55,10 @@ const resolvers = {
       // Return the token and the user
       return { token, user };
     },
+    addScore: async (_:any, {username, score}: { username: string; score: number}) => {
+      const newEntry = new Leaderboard({ username, score });
+      return await newEntry.save();
+    }
    
   },
 };

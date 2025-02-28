@@ -37,12 +37,20 @@ const typeDefs = `
     user: User
   }
 
+  type LeaderboardEntry {
+    id: ID!
+    username: String!
+    score: Int!
+    timestamp: String!
+  }
+
   type Query {
-   
+    getLeaderboard: [LeaderboardEntry]
     me: User
   }
 
   type Mutation {
+    addScore(username: String!, score: Int!): LeaderboardEntry
     addUser(input: UserInput!): Auth
     login(email: String!, password: String!): Auth
     

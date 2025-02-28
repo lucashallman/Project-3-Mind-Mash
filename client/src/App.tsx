@@ -1,7 +1,7 @@
 import './App.css';
 
 
-// import { Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import {
   ApolloClient,
   InMemoryCache,
@@ -14,15 +14,11 @@ import { setContext } from '@apollo/client/link/context';
 
 
 
-import { Route, Routes } from 'react-router-dom';
+
 import AppHeader from './components/Header';
 import AppFooter from './components/Footer';  
 
-import Home from './pages/Home';
-import Leaderboard from './pages/Leaderboard';
-import Signuplogin from './pages/Signuplogin';
-import Trivia from './pages/Trivia';
-import Riddles from './pages/Riddles';
+
 
 import { Layout } from 'antd';
 import React from 'react';
@@ -37,6 +33,7 @@ const headerStyle: React.CSSProperties = {
   paddingInline: 48,
   lineHeight: '68px',
   backgroundColor: '#46467A',
+  width: '100%',
 };
 
 const contentStyle: React.CSSProperties = {
@@ -86,27 +83,21 @@ const App: React.FC = () => {
 
     <ApolloProvider client={client}>
 
-      <div className="page-container">
+
       <Layout>
         <Header style={headerStyle}>
           <AppHeader />
         </Header>
 
         <Content style={contentStyle}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/Leaderboard" element={<Leaderboard />} />
-            <Route path="/Signuplogin" element={<Signuplogin />} />
-            <Route path="/Trivia" element={<Trivia />} />
-            <Route path = "/Riddle" element={<Riddles />} />
-          </Routes>
+          < Outlet />
         </Content>
 
         <Footer style={footerStyle}>
           <AppFooter />
         </Footer>
       </Layout>
-      </div>
+
 
     </ApolloProvider>
   );
