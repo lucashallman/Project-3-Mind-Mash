@@ -1470,6 +1470,22 @@ input[type='radio'] {
   list-style-type: none;
 }
 
+/* search styling */
+
+.search-container {
+  border: #FFc212  2px solid;
+  border-radius: 10px;
+
+  padding-top: 1vh;
+  margin: .5vb;
+  width: 30vw;
+  height: 6vh;
+
+  background-color: #46467a;
+  font-size: 20px;
+  list-style-type: none;
+}
+
 /* animation classes */
 
 .anim-fadein {

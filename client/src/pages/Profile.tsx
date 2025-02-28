@@ -34,7 +34,9 @@ const Profile = () => {
         return 0;
     }
 
-    return (
+    const noUser = <div><h2>Whoops! No User Here!</h2></div>
+
+    const formattedUser =
         <div className="profile-container anim-fadein">
             <h2 className="profilecard username">
                 {profile.username}
@@ -44,7 +46,11 @@ const Profile = () => {
             <p className="profilecard accuracy">Quiz Accuracy: {QuizAccuracy()}%</p>
 
         </div>
-    )
+
+    const display = data ? formattedUser : noUser;
+
+    return (display)
+
 }
 
 export default Profile;
