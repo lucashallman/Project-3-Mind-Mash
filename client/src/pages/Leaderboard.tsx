@@ -27,12 +27,12 @@ const Leaderboard = () => {
   const leaderboardData = []
 
   for (let i = 0; i < sortedData.length; i++) {
-    const leaderboardEntry = <li className="trivia-answer">{i + 1}: {sortedData[i].username} with {sortedData[i].score} Trivia Points!</li>
+    const leaderboardEntry = <li className="leader-card">{i + 1}: {sortedData[i].username} with {sortedData[i].score} Trivia Points!</li>
     leaderboardData.push(leaderboardEntry);
   }
 
   return (
-    <div>
+    <div className="leaderboard">
       <h1>Leaderboard</h1>
       <ul>
         {/* {sortedData.map((entry: any) => (

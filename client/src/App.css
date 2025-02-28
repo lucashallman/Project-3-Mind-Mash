@@ -1447,6 +1447,29 @@ input[type='radio'] {
   width: 58vw;
 }
 
+/* Leaderboard styling */
+.leaderboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.leader-card {
+  border: #FFc212  2px solid;
+  border-radius: 10px;
+
+  padding-top: 1vh;
+  margin: .5vb;
+  width: 40vw;
+  height: 7vh;
+
+  background-color: #46467a;
+  font-size: 20px;
+  list-style-type: none;
+}
+
 /* animation classes */
 
 .anim-fadein {
