@@ -1,5 +1,6 @@
 
 import User from '../models/User.js'
+import Leaderboard from '../models/Leaderboard.js';
 // import cleanDB from "./cleanDB.js";
 
 
@@ -116,14 +117,43 @@ const seedUsers = async () => {
             totalRiddleCount: 151,
         },
 
+    ];
+
+    const leaderboard = [
+        { 
+            username: 'ShadowStriker',
+            score: 100,
+        },
+        {
+            username: 'TitanSlayer',
+            score: 98
+        },
+        {
+            username: 'AncientWizard',
+            score: 9000
+        },
+        {
+            username: 'TurboNinja',
+            score: 50
+        },
+        {
+            username: 'CyberGhost',
+            score: 635
+        },
     ]
 
     try{
         await User.deleteMany();
         await User.insertMany(users);
-        console.log("Users seeded successfully.")
+        console.log('Users seeded.')
+
+        await Leaderboard.deleteMany();
+        await Leaderboard.insertMany(leaderboard);
+        console.log('Leaderboard seeded.');
+
+        console.log("Seed Success!")
     } catch (err) {
-        console.error("Error seeding users:", err)
+        console.error("Error seeding:", err)
     } finally {
         mongoose.connection.close();
     }

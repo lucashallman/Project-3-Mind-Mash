@@ -71,6 +71,9 @@ const Trivia = () => {
             const newNumberCorrect = numberCorrect + 1;
             setNumberCorrect(newNumberCorrect);
 
+            const oldTotal = localStorage.getItem('scoreTotal');
+            const newTotal = Number(oldTotal) + 1;
+            localStorage.setItem('scoreTotal', String(newTotal));
 
             localStorage.setItem('numberCorrect', newNumberCorrect.toString());
             radioButtons.forEach(radio => {
@@ -82,6 +85,11 @@ const Trivia = () => {
             setCurrentIncorrect(newCurrentIncorrect);
             const newNumberIncorrect = numberIncorrect + 1;
             setNumberIncorrect(newNumberIncorrect);
+
+            const oldTotal = localStorage.getItem('scoreTotal');
+            const newTotal = Number(oldTotal) + 1;
+            localStorage.setItem('scoreTotal', String(newTotal));
+
             localStorage.setItem('numberIncorrect', newNumberIncorrect.toString());
             radioButtons.forEach(radio => {
                 radio.disabled = true;

@@ -17,21 +17,31 @@ const Leaderboard = () => {
   let Displaydata = [{ username: 'displaydata', score: 1}];
 
   if (data) {
+    console.log('received leaderboard data:', data)
     Displaydata = data.getLeaderboard
   } else {
     Displaydata = testArray
   }
 
+  const sortedData = [...Displaydata].sort((a, b) => b.score - a.score);
+  const leaderboardData = []
+
+  for (let i = 0; i < sortedData.length; i++) {
+    const leaderboardEntry = <li className="trivia-answer">{i + 1}: {sortedData[i].username} with {sortedData[i].score} Trivia Points!</li>
+    leaderboardData.push(leaderboardEntry);
+  }
+
   return (
     <div>
       <h1>Leaderboard</h1>
-      <ol>
-        {Displaydata.map((entry: any) => (
+      <ul>
+        {/* {sortedData.map((entry: any) => (
           <li key={entry.id}>
-            {entry.username}: {entry.score}
+            {entry.value}
           </li>
-        ))}
-      </ol>
+        ))} */}
+        {leaderboardData}
+      </ul>
     </div>
   );
 };
