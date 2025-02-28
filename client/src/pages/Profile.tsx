@@ -29,7 +29,8 @@ const Profile = () => {
 
     const QuizAccuracy = () => {
         if (profile.totalTriviaCount > 0) {
-            return profile.correctTriviaCount / profile.totalTriviaCount;
+            const trimmedNumber =  Math.ceil((profile.correctTriviaCount / profile.totalTriviaCount) * 100);
+            return trimmedNumber;
         }
         return 0;
     }
