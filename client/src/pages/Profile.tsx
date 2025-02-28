@@ -1,14 +1,14 @@
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 
-import { QUERY_ME } from "../utils/queries";
+import { QUERY_USER } from "../utils/queries";
 
 const Profile = () => {
 
-    const { userId } = useParams();
-    console.log('uid:', userId);
-    const { loading, data } = useQuery(QUERY_ME, {
-        variables: { profileId: userId },
+    const { username } = useParams();
+    console.log('username:', username);
+    const { loading, data } = useQuery(QUERY_USER, {
+        variables: { username: username },
     });
 
     const profile = data?.user || {
@@ -21,6 +21,7 @@ const Profile = () => {
         totalRiddleCount: 0,
         correctRiddleCount: 0
     };
+    console.log(data)
 
     if (loading) {
         return (<div>Loading...</div>)
