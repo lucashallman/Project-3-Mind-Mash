@@ -26,13 +26,13 @@ const startApolloServer = async () => {
   }));
 
   // if we're in production, serve client/dist as static assets
-  if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, '../../client/dist')));
+  // if (process.env.NODE_ENV === 'production') {
+  //   app.use(express.static(path.join(__dirname, '../../client/dist')));
 
-    app.get('*', (_req: Request, res: Response) => {
-      res.sendFile(path.join(__dirname, '../../client/dist/index.html'));
-    });
-  }
+  //   app.get('*', (_req: Request, res: Response) => {
+  //     res.sendFile(path.join(__dirname, '../../client/dist/index.html'));
+  //   });
+  // }
   
   db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
