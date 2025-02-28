@@ -13,7 +13,7 @@ dotenv.config();
 
 const seedUsers = async () => {
     await mongoose.connect(process.env.MONGODB_URI as string);
-
+    console.log("Connected to MongoDB.")
     const users = [
 
         {
@@ -156,6 +156,7 @@ const seedUsers = async () => {
         console.error("Error seeding:", err)
     } finally {
         mongoose.connection.close();
+        console.log("Mongo connection closed.")
     }
 }
 

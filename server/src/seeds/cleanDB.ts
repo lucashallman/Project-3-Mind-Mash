@@ -3,7 +3,8 @@
 
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import { User } from "../models";
+import { User } from "../models/index.js";
+import Leaderboard from '../models/Leaderboard.js';
 
 dotenv.config();
 
@@ -17,6 +18,8 @@ const cleanDB = async () => {
         console.log("Users cleared.");
 
         //space for other models
+        await Leaderboard.deleteMany();
+        console.log("Leaderboard cleared.");
 
         console.log("All collections cleared. Please seed database.")
     } catch (err) {

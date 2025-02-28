@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { useQuery } from '@apollo/client';
+import { QUERY_ME1 } from '../utils/queries';
 import { fetchTrivia, randomizeAnswers, validateAnswer, convertSpecialCharacterCodes } from '../services/triviaService';
 import { ITrivia } from '../interfaces/Trivia';
 
@@ -13,6 +15,18 @@ const Trivia = () => {
     const [showResults, setShowResults] = useState<boolean>(false);
     const [selectedAnswer, setSelectedAnswer] = useState<string>('');
     const [currentIncorrect, setCurrentIncorrect] = useState<number>(0);
+    
+    const { data } = useQuery(QUERY_ME1);
+    
+    useEffect(() => {
+        console.log(data);
+        let userData;
+        if (data) {
+            userData = data?.me
+        }
+        console.log(userData)
+    }, [])
+
     useEffect(() => {
         const storedNumberCorrect = localStorage.getItem('numberCorrect');
         if (storedNumberCorrect) {
