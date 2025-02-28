@@ -23,6 +23,7 @@ import Leaderboard from './pages/Leaderboard';
 import Signuplogin from './pages/Signuplogin';
 import Trivia from './pages/Trivia';
 import Riddles from './pages/Riddles';
+import Profile from './pages/Profile';
 
 import { Layout } from 'antd';
 import React from 'react';
@@ -99,6 +100,7 @@ const App: React.FC = () => {
             <Route path="/Signuplogin" element={<Signuplogin />} />
             <Route path="/Trivia" element={<Trivia />} />
             <Route path = "/Riddle" element={<Riddles />} />
+            <Route path="/Profile" element={<Profile />} />
           </Routes>
         </Content>
 
