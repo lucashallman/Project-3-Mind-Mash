@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import { useMutation } from "@apollo/client";
+
 import { GET_LEADERBOARD } from "../utils/queries";
 
 const Leaderboard = () => {

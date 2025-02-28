@@ -1389,7 +1389,7 @@ a:hover {
   padding: 2.5% 30%;
   background-color: #E0dffd;
   color: #46467a;
-  scale: 1.1;
+  /* scale: 1.1; */
   font-size: 30px;
 }
 
