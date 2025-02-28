@@ -7,6 +7,8 @@ import App from './App';
 import Home from './pages/Home';
 import Riddle from './pages/Riddles';
 import Profile from './pages/Profile'
+import Signup from './pages/Signuplogin';
+import Stats from './pages/Stats';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -27,7 +29,16 @@ const router = createBrowserRouter([
       {
         path: 'Profile',
         element: <Profile />
+      },
+      {
+        path: 'Signup',
+        element: <Signup />
+      },
+      {
+        path: 'Stats',
+        element: <Stats />
       }
+
     ]
   }
 ]);
