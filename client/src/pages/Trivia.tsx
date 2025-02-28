@@ -54,6 +54,7 @@ const Trivia = () => {
         const isCorrect = validateAnswer(selectedAnswer, correctAnswer);
         const radioButtons = document.getElementsByName('answer') as NodeListOf<HTMLInputElement>;
 
+
         const selectedRadio = Array.from(radioButtons).find(radio => radio.value === selectedAnswer);
         if (selectedRadio) {
             const label = document.querySelector(`label[for='${selectedRadio.id}']`)
@@ -193,6 +194,7 @@ const Trivia = () => {
 
                 if (!isAnyChecked) {
                     return;
+
                 }
                 if (questionNumber === 9) {
                     setQuestionNumber(0);
@@ -207,6 +209,7 @@ const Trivia = () => {
                     setAnswers(answers);
                     return;
                 }
+
                 let i = questionNumber + 1;
                 setQuestionNumber(i);
 
@@ -246,14 +249,20 @@ const Trivia = () => {
                 <div>
                     <h3>{trivia.results[questionNumber].question}</h3>
                     {answers.map((answer, index) => (
-                        <div key={index} style={{ marginBottom: '20px', fontSize: '2em' }} >
+
+
+
+                        <div key={index} style={{ marginBottom: '20px', fontSize: '2em' }}>
+
                             <input
                                 type="radio"
                                 id={`answer-${index}`}
                                 name="answer"
                                 value={answer}
                                 onChange={() => handleAnswer(answer)}
+
                                 style={{ marginRight: '15px', transform: 'scale(1.5)' }}
+
                             />
                             <label
                                 htmlFor={`answer-${index}`}
@@ -267,7 +276,9 @@ const Trivia = () => {
                                                 : 'inherit'
                                         : 'inherit'
                                 }}
+
                                 className='trivia-answer'
+
                             >
                                 {answer}
                             </label>

@@ -10,6 +10,7 @@ import Profile from './pages/Profile'
 import Signup from './pages/Signuplogin';
 import Stats from './pages/Stats';
 import Leaderboard from './pages/Leaderboard';
+
 const router = createBrowserRouter([
   {
     path: '/',
