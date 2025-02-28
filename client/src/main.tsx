@@ -40,7 +40,7 @@ const router = createBrowserRouter([
         element: <Stats />
       },
       {
-        path: 'Leaderboard',
+        path: 'Leader',
         element: <Leaderboard />
       }
 
