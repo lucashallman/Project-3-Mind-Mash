@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { fetchTrivia, randomizeAnswers, validateAnswer } from '../services/triviaService';
+import { fetchTrivia, randomizeAnswers, validateAnswer, convertSpecialCharacterCodes } from '../services/triviaService';
 import { ITrivia } from '../interfaces/Trivia';
 
 const Trivia = () => {
@@ -11,7 +11,7 @@ const Trivia = () => {
     const [questionNumber, setQuestionNumber] = useState<number>(0);
     const [currentCorrect, setCurrentCorrect] = useState<number>(0);
     const [showResults, setShowResults] = useState<boolean>(false);
-    // const [selectedAnswer, setSelectedAnswer] = useState<string>('');
+    const [selectedAnswer, setSelectedAnswer] = useState<string>('');
     const [currentIncorrect, setCurrentIncorrect] = useState<number>(0);
     useEffect(() => {
         const storedNumberCorrect = localStorage.getItem('numberCorrect');
@@ -54,6 +54,16 @@ const Trivia = () => {
         const isCorrect = validateAnswer(selectedAnswer, correctAnswer);
         const radioButtons = document.getElementsByName('answer') as NodeListOf<HTMLInputElement>;
 
+
+        const selectedRadio = Array.from(radioButtons).find(radio => radio.value === selectedAnswer);
+        if (selectedRadio) {
+            const label = document.querySelector(`label[for='${selectedRadio.id}']`)
+            if (label) {
+                label.classList.add("selected");
+            }
+        }
+        setSelectedAnswer(selectedAnswer);
+
         if (isCorrect) {
             setAnswerCorrect(true);
             const newCurrentCorrect = currentCorrect + 1;
@@ -61,6 +71,9 @@ const Trivia = () => {
             const newNumberCorrect = numberCorrect + 1;
             setNumberCorrect(newNumberCorrect);
 
+            const oldTotal = localStorage.getItem('scoreTotal');
+            const newTotal = Number(oldTotal) + 1;
+            localStorage.setItem('scoreTotal', String(newTotal));
 
             localStorage.setItem('numberCorrect', newNumberCorrect.toString());
             radioButtons.forEach(radio => {
@@ -72,114 +85,31 @@ const Trivia = () => {
             setCurrentIncorrect(newCurrentIncorrect);
             const newNumberIncorrect = numberIncorrect + 1;
             setNumberIncorrect(newNumberIncorrect);
+
+            const oldTotal = localStorage.getItem('scoreTotal');
+            const newTotal = Number(oldTotal) + 1;
+            localStorage.setItem('scoreTotal', String(newTotal));
+
             localStorage.setItem('numberIncorrect', newNumberIncorrect.toString());
             radioButtons.forEach(radio => {
                 radio.disabled = true;
             });
         }
     };
-    const convertSpecialCharacterCodes = (response: any) => {
-        response.results.forEach((result: any) => {
-            result.question = result.question.replace(/&quot;/g, '"')
-                .replace(/&#039;/g, "'")
-                .replace(/&amp;/g, "&")
-                .replace(/&lt;/g, "<")
-                .replace(/&gt;/g, ">")
-                .replace(/&rsquo;/g, "'")
-                .replace(/&iuml;/g, "ï")
-                .replace(/&eacute;/g, "é")
-                .replace(/&aacute;/g, "á")
-                .replace(/&ouml;/g, "ö")
-                .replace(/&auml;/g, "ä")
-                .replace(/&uuml;/g, "ü")
-                .replace(/&shy;/g, "-")
-                .replace(/&ntilde;/g, "ñ")
-                .replace(/&iquest;/g, "¿")
-                .replace(/&oacute;/g, "ó")
-                .replace(/&uacute;/g, "ú")
-                .replace(/&egrave;/g, "è")
-                .replace(/&igrave;/g, "ì")
-                .replace(/&ograve;/g, "ò")
-                .replace(/&ugrave;/g, "ù")
-                .replace(/&ccedil;/g, "ç")
-                .replace(/&iexcl;/g, "¡")
-                .replace(/&iacute;/g, "í")
-                .replace(/&Eacute;/g, "É")
-                .replace(/&Aacute;/g, "Á")
-                .replace(/&Ouml;/g, "Ö")
-                .replace(/&Auml;/g, "Ä")
-                .replace(/&Uuml;/g, "Ü")
-
-            result.correct_answer = result.correct_answer.replace(/&quot;/g, '"')
-                .replace(/&#039;/g, "'")
-                .replace(/&amp;/g, "&")
-                .replace(/&lt;/g, "<")
-                .replace(/&gt;/g, ">")
-                .replace(/&rsquo;/g, "'")
-                .replace(/&iuml;/g, "ï")
-                .replace(/&eacute;/g, "é")
-                .replace(/&aacute;/g, "á")
-                .replace(/&ouml;/g, "ö")
-                .replace(/&auml;/g, "ä")
-                .replace(/&uuml;/g, "ü")
-                .replace(/&ntilde;/g, "ñ")
-                .replace(/&shy;/g, "-")
-                .replace(/&iquest;/g, "¿")
-                .replace(/&oacute;/g, "ó")
-                .replace(/&uacute;/g, "ú")
-                .replace(/&egrave;/g, "è")
-                .replace(/&igrave;/g, "ì")
-                .replace(/&ograve;/g, "ò")
-                .replace(/&ugrave;/g, "ù")
-                .replace(/&ccedil;/g, "ç")
-                .replace(/&iexcl;/g, "¡")
-                .replace(/&iquest;/g, "¿")
-                .replace(/&iacute;/g, "í")
-                .replace(/&Eacute;/g, "É")
-                .replace(/&Aacute;/g, "Á")
-                .replace(/&Ouml;/g, "Ö")
-                .replace(/&Auml;/g, "Ä")
-                .replace(/&Uuml;/g, "Ü")
-
-            result.incorrect_answers = result.incorrect_answers.map((answer: string) =>
-                answer.replace(/&quot;/g, '"')
-                    .replace(/&#039;/g, "'")
-                    .replace(/&amp;/g, "&")
-                    .replace(/&lt;/g, "<")
-                    .replace(/&gt;/g, ">")
-                    .replace(/&rsquo;/g, "'")
-                    .replace(/&iuml;/g, "ï")
-                    .replace(/&eacute;/g, "é")
-                    .replace(/&aacute;/g, "á")
-                    .replace(/&ouml;/g, "ö")
-                    .replace(/&auml;/g, "ä")
-                    .replace(/&uuml;/g, "ü")
-                    .replace(/&ntilde;/g, "ñ")
-                    .replace(/&shy;/g, "-")
-                    .replace(/&iexcl;/g, "¡")
-                    .replace(/&iquest;/g, "¿")
-                    .replace(/&oacute;/g, "ó")
-                    .replace(/&uacute;/g, "ú")
-                    .replace(/&egrave;/g, "è")
-                    .replace(/&igrave;/g, "ì")
-                    .replace(/&ograve;/g, "ò")
-                    .replace(/&ugrave;/g, "ù")
-                    .replace(/&ccedil;/g, "ç")
-                    .replace(/&iacute;/g, "í")
-                    .replace(/&Eacute;/g, "É")
-                    .replace(/&Aacute;/g, "Á")
-                    .replace(/&Ouml;/g, "Ö")
-                    .replace(/&Auml;/g, "Ä")
-                    .replace(/&Uuml;/g, "Ü")
-                    
-
-            );
-        });
-    }
-
 
     const handleNext = () => {
         setAnswerCorrect(undefined);
+
+        const selections = document.getElementsByName('answer') as NodeListOf<HTMLInputElement>;
+        const selectedRadio = Array.from(selections).find(radio => radio.value === selectedAnswer);
+        if (selectedRadio) {
+            const label = document.querySelector(`label[for='${selectedRadio.id}']`)
+            if (label) {
+                label.classList.remove("selected");
+            }
+        }
+        setSelectedAnswer('');
+
         const getTrivia = async () => {
             try {
 
@@ -188,6 +118,7 @@ const Trivia = () => {
 
                 if (!isAnyChecked) {
                     return;
+
                 }
                 if (questionNumber === 9) {
                     setQuestionNumber(0);
@@ -202,6 +133,7 @@ const Trivia = () => {
                     setAnswers(answers);
                     return;
                 }
+
                 let i = questionNumber + 1;
                 setQuestionNumber(i);
 
@@ -228,7 +160,6 @@ const Trivia = () => {
         radioButtons.forEach(radio => {
             radio.checked = false;
         });
-
     };
 
     useEffect(() => {
@@ -242,14 +173,20 @@ const Trivia = () => {
                 <div>
                     <h3>{trivia.results[questionNumber].question}</h3>
                     {answers.map((answer, index) => (
+
+
+
                         <div key={index} style={{ marginBottom: '20px', fontSize: '2em' }}>
+
                             <input
                                 type="radio"
                                 id={`answer-${index}`}
                                 name="answer"
                                 value={answer}
                                 onChange={() => handleAnswer(answer)}
+
                                 style={{ marginRight: '15px', transform: 'scale(1.5)' }}
+
                             />
                             <label
                                 htmlFor={`answer-${index}`}
@@ -258,11 +195,14 @@ const Trivia = () => {
                                     color: answerCorrect !== undefined
                                         ? answer === trivia?.results[questionNumber].correct_answer
                                             ? 'green'
-                                            : false
+                                            : answer === selectedAnswer
                                                 ? 'red'
                                                 : 'inherit'
                                         : 'inherit'
                                 }}
+
+                                className='trivia-answer'
+
                             >
                                 {answer}
                             </label>
@@ -328,4 +268,3 @@ const Trivia = () => {
 }
 
 export default Trivia;
-

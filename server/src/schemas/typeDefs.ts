@@ -4,27 +4,14 @@ const typeDefs = `
     username: String
     email: String
     password: String
-    thoughts: [Thought]!
+    triviapoints: Int
+    correctTriviaCount: Int
+    totalTriviaCount: Int
+    correctRiddleCount: Int
+    totalRiddleCount: Int
   }
 
-  type Thought {
-    _id: ID
-    thoughtText: String
-    thoughtAuthor: String
-    createdAt: String
-    comments: [Comment]!
-  }
 
-  type Comment {
-    _id: ID
-    commentText: String
-    createdAt: String
-  }
-
-  input ThoughtInput {
-    thoughtText: String!
-    thoughtAuthor: String!
-  }
 
   input UserInput {
     username: String!

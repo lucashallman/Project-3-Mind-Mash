@@ -20,25 +20,25 @@ const Login = () => {
   };
 
   // submit form
-  const handleFormSubmit = async (event: FormEvent) => {
+const handleFormSubmit = async (event: FormEvent) => {
     event.preventDefault();
     console.log(formState);
     try {
-      const { data } = await login({
-        variables: { ...formState },
-      });
+        const { data } = await login({
+            variables: { ...formState },
+        });
 
-      Auth.login(data.login.token);
+        Auth.login(data.login.token);
     } catch (e) {
-      console.error(e);
+        console.error(e);
     }
 
     // clear form values
     setFormState({
-      email: '',
-      password: '',
+        email: '',
+        password: '',
     });
-  };
+};
 
   return (
     <main className="flex-row justify-center mb-4">
@@ -51,6 +51,8 @@ const Login = () => {
                 Success! You may now head{' '}
                 <Link to="/">back to the homepage.</Link>
               </p>
+            ) : Auth.loggedIn() ? (
+              <p>You are already logged in.</p>
             ) : (
               <form onSubmit={handleFormSubmit}>
                 <input

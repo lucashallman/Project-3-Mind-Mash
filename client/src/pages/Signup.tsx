@@ -48,6 +48,8 @@ const Signup = () => {
                 Success! You may now head{' '}
                 <Link to="/">back to the homepage.</Link>
               </p>
+            ) : Auth.loggedIn() ? (
+              <p>You are already logged in.</p>
             ) : (
               <form onSubmit={handleFormSubmit}>
                 <input
