@@ -19,6 +19,18 @@ const resolvers = {
     getLeaderboard: async () => {
       return await Leaderboard.find().sort({ score: -1 }).limit(10);
     },
+    user: async (_: any,  { username }: { username: String} ) => {
+      try {
+        const user = await User.findOne({ username });
+        if (!user) {
+          throw new Error(`User with username ${username} not found`);
+        }
+        return user;
+      } catch (error) {
+        console.error(error);
+        throw new Error('Server error while fetching user');
+      }
+    },
   },
   Mutation: {
     addUser: async (_parent: any, { input }: any) => {

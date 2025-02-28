@@ -29,7 +29,7 @@ const router = createBrowserRouter([
         element: <Riddle />
       },
       {
-        path: 'Profile',
+        path: 'Profile/:username',
         element: <Profile />
       },
       {

@@ -1,10 +1,14 @@
 const typeDefs = `
   type User {
-    _id: ID
-    username: String
-    email: String
-    password: String
-    thoughts: [Thought]!
+    _id: ID!
+    username: String!
+    email: String!
+    password: String!
+    triviapoints: Int
+    correctTriviaCount: Int
+    totalTriviaCount: Int
+    correctRiddleCount: Int
+    totalRiddleCount: Int
   }
 
   type Thought {
@@ -47,6 +51,7 @@ const typeDefs = `
   type Query {
     getLeaderboard: [LeaderboardEntry]
     me: User
+    user(username: String!): User
   }
 
   type Mutation {
