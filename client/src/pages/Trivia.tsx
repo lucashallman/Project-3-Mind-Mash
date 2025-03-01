@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
-import { UPDATE_USER } from '../utils/mutations';
+import { UPDATE_USER, ADD_LEADERBOARD_ENTRY } from '../utils/mutations';
 import { QUERY_ME1 } from '../utils/queries';
 import { fetchTrivia, randomizeAnswers, validateAnswer, convertSpecialCharacterCodes } from '../services/triviaService';
 import { ITrivia } from '../interfaces/Trivia';
@@ -19,6 +19,7 @@ const Trivia = () => {
     const [selectedAnswer, setSelectedAnswer] = useState<string>('');
     const [currentIncorrect, setCurrentIncorrect] = useState<number>(0);
     const [updateUser] = useMutation(UPDATE_USER);
+    const [addLeaderboard] = useMutation(ADD_LEADERBOARD_ENTRY);
 
     const { data } = useQuery(QUERY_ME1);
 
@@ -224,6 +225,10 @@ const Trivia = () => {
 
 
     }
+
+    const handleLeaderboard = () => {
+        addLeaderboard({variables: {username: user?.username, score: currentCorrect}})
+    } 
     const resetSelection = () => {
         const radioButtons = document.getElementsByName('answer') as NodeListOf<HTMLInputElement>;
         radioButtons.forEach(radio => {
@@ -328,6 +333,11 @@ const Trivia = () => {
                     >
                         Restart Quiz
                     </button>
+                    <button
+                        onClick={handleLeaderboard}
+                        className="btn btn-primary mt-3"
+                        style={{ padding: '10px 20px', fontSize: '1.2em', borderRadius: '5px' }}                   
+                    >Submit to Leaderboard</button>
                 </div>
             ) : (
                 <p>Loading...</p>
