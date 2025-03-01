@@ -11,7 +11,7 @@
     "install": "cd server && npm i && cd ../client && npm i",
     "client:build": "cd client && npm run build",
     "client:dev": "cd client && npm run dev",
-    "seed": "cd server && npm run seed",
+    "seed": "cd server && npm run cleanseed",
     "build": "concurrently \"cd server && npm run build\" \"cd client && npm run build\"",
     "render-build": "npm install && npm run build"
   },

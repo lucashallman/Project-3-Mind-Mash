@@ -1,9 +1,14 @@
 import { useEffect, useState } from 'react';
+import { useQuery, useMutation } from '@apollo/client';
+import { UPDATE_USER } from '../utils/mutations';
+import { QUERY_ME1 } from '../utils/queries';
 import { fetchTrivia, randomizeAnswers, validateAnswer, convertSpecialCharacterCodes } from '../services/triviaService';
 import { ITrivia } from '../interfaces/Trivia';
+import { IUser } from '../interfaces/User';
 
 const Trivia = () => {
     const [trivia, setTrivia] = useState<ITrivia>();
+    const [user, setUser] = useState<IUser>()
     const [answers, setAnswers] = useState<string[]>([]);
     const [answerCorrect, setAnswerCorrect] = useState<boolean>();
     const [numberCorrect, setNumberCorrect] = useState<number>(0);
@@ -13,6 +18,20 @@ const Trivia = () => {
     const [showResults, setShowResults] = useState<boolean>(false);
     const [selectedAnswer, setSelectedAnswer] = useState<string>('');
     const [currentIncorrect, setCurrentIncorrect] = useState<number>(0);
+    const [updateUser] = useMutation(UPDATE_USER);
+
+    const { data } = useQuery(QUERY_ME1);
+
+    useEffect(() => {
+        console.log(data);
+        let userData;
+        if (data) {
+            userData = data?.me
+        }
+        console.log(userData)
+        setUser(userData);
+    }, [data])
+
     useEffect(() => {
         const storedNumberCorrect = localStorage.getItem('numberCorrect');
         if (storedNumberCorrect) {
@@ -64,6 +83,24 @@ const Trivia = () => {
         }
         setSelectedAnswer(selectedAnswer);
 
+        //increment saved total trivia
+        const oldTotal = user?.totalTriviaCount;
+        const newTotal = Number(oldTotal) + 1;
+        localStorage.setItem('scoreTotal', String(newTotal));
+        const userUpdateObj = {
+            username: user?.username || 'nouser',
+            fieldName: 'totalTriviaCount',
+            value: newTotal
+        }
+        try {
+            console.log(userUpdateObj)
+            const newData = updateUser({ variables: { input: userUpdateObj } });
+            console.log(newData);
+
+        } catch (err) {
+            console.error('error updating user data:', err);
+        }
+
         if (isCorrect) {
             setAnswerCorrect(true);
             const newCurrentCorrect = currentCorrect + 1;
@@ -71,9 +108,41 @@ const Trivia = () => {
             const newNumberCorrect = numberCorrect + 1;
             setNumberCorrect(newNumberCorrect);
 
-            const oldTotal = localStorage.getItem('scoreTotal');
-            const newTotal = Number(oldTotal) + 1;
-            localStorage.setItem('scoreTotal', String(newTotal));
+            // increment saved correct trivia
+            const oldCorrectTotal = user?.correctTriviaCount;
+            const newCorrectTotal = Number(oldCorrectTotal) + 1;
+            localStorage.setItem('scoreCorrect', String(newCorrectTotal));
+            const userUpdateObj1 = {
+                username: user?.username || 'nouser',
+                fieldName: 'correctTriviaCount',
+                value: newCorrectTotal
+            }
+            try {
+                console.log(userUpdateObj1)
+                const newData = updateUser({ variables: { input: userUpdateObj1 } });
+                console.log(newData);
+
+            } catch (err) {
+                console.error('error updating user data:', err);
+            }
+
+            // increment saved trivia point
+            const oldPoints = user?.triviapoints;
+            const newPoints = Number(oldPoints) + 1;
+            localStorage.setItem('scoreCorrect', String(newPoints));
+            const userUpdateObj2 = {
+                username: user?.username || 'nouser',
+                fieldName: 'triviapoints',
+                value: newPoints
+            }
+            try {
+                console.log(userUpdateObj2)
+                const newData = updateUser({ variables: { input: userUpdateObj2 } });
+                console.log(newData);
+
+            } catch (err) {
+                console.error('error updating user data:', err);
+            }
 
             localStorage.setItem('numberCorrect', newNumberCorrect.toString());
             radioButtons.forEach(radio => {

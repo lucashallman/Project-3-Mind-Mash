@@ -10,7 +10,7 @@
     "watch": "npx nodemon",
     "seed": "npm run build && node dist/seeds/seed.js",
     "cleanDB": "npm run build && node dist/seeds/cleanDB.js",
-    "cleanseed": "npm run seed && npm run cleanDB"
+    "cleanseed": "npm run cleanDB && npm run seed"
   },
   "nodemonConfig": {
     "watch": [

@@ -37,23 +37,23 @@ const userSchema = new Schema<IUser>(
     },
     triviapoints: {
       type: Number,
-      required: false,
+      default: 0,
     },
     correctTriviaCount: {
       type: Number,
-      required: false,
+      default: 0,
     },
     totalTriviaCount: {
       type: Number,
-      required: false,
+      default: 0,
     },
     correctRiddleCount: {
       type: Number,
-      required: false,
+      default: 0,
     },
     totalRiddleCount: {
       type: Number,
-      required: false,
+      default: 0,
     },
     // thoughts: [
     //   {

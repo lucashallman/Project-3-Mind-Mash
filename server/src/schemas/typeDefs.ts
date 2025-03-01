@@ -11,7 +11,11 @@ const typeDefs = `
     totalRiddleCount: Int
   }
 
-
+  input UserUpdateArgs {
+    username: String!
+    fieldName: String!
+    value: Int!
+  }
 
   input UserInput {
     username: String!
@@ -41,7 +45,7 @@ const typeDefs = `
     addScore(username: String!, score: Int!): LeaderboardEntry
     addUser(input: UserInput!): Auth
     login(email: String!, password: String!): Auth
-    
+    updateUserScore(input: UserUpdateArgs!): User
   }
 `
 

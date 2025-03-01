@@ -30,6 +30,12 @@ interface Context {
   user?: User;
 }
 
+// interface updateUserArgs {
+//   username: string;
+//   fieldName: string;
+//   value: number;
+// }
+
 const resolvers = {
   Query: {
  
@@ -95,6 +101,32 @@ const resolvers = {
     addScore: async (_:any, {username, score}: { username: string; score: number}) => {
       const newEntry = new Leaderboard({ username, score });
       return await newEntry.save();
+    },
+    updateUserScore: async (_: any, { input}: {input: { username: string, fieldName: string, value: number}}) => {
+
+      const { username, fieldName, value } = input;
+      const allowedFields = [
+        'triviapoints',
+        'correctTriviaCount',
+        'totalTriviaCount',
+        'correctRiddleCount',
+        'totalRiddleCount'
+      ];
+      console.log(username, fieldName, value);
+
+      if (!allowedFields.includes(fieldName)) {
+        throw new Error(`Invalid field name, ${fieldName} is not a user field.`)
+      }
+
+      const updateData = { [fieldName]: value}
+
+      const updatedUser = await User.findOneAndUpdate(
+        { username }, 
+        { $set: updateData },
+        { new: true, runValidators: true}
+      )
+
+      return updatedUser;
     }
    
   },
