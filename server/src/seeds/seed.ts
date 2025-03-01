@@ -122,23 +122,23 @@ const seedUsers = async () => {
     const leaderboard = [
         { 
             username: 'ShadowStriker',
-            score: 100,
+            score: 10,
         },
         {
             username: 'TitanSlayer',
-            score: 98
+            score: 9
         },
         {
             username: 'AncientWizard',
-            score: 9000
+            score: 900
         },
         {
             username: 'TurboNinja',
-            score: 50
+            score: 15
         },
         {
             username: 'CyberGhost',
-            score: 635
+            score: 63
         },
     ]
 

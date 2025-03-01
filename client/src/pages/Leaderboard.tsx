@@ -43,7 +43,7 @@ const Leaderboard = () => {
 
   for (let i = 0; i < sortedData.length; i++) {
     const entryLink = `/Profile/${sortedData[i].username}`
-    const leaderboardEntry = <li className="leader-card">{i + 1}: <NavLink to={entryLink} className={({ isActive }) => (isActive ? 'active' : '')}>{sortedData[i].username}</NavLink> with {sortedData[i].score} Trivia Points!</li>
+    const leaderboardEntry = <li className="leader-card">{i + 1}: <NavLink to={entryLink} className={({ isActive }) => (isActive ? 'active' : '')}>{sortedData[i].username}</NavLink> with {sortedData[i].score} Correct Answers!</li>
     leaderboardData.push(leaderboardEntry);
   }
 
