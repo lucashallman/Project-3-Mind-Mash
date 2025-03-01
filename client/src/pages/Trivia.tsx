@@ -226,8 +226,13 @@ const Trivia = () => {
 
     }
 
+    const [leaderSubmit, setLeaderSubmit] = useState<Boolean>(false);
+
     const handleLeaderboard = () => {
-        addLeaderboard({variables: {username: user?.username, score: currentCorrect}})
+        if (!leaderSubmit) {
+            addLeaderboard({variables: {username: user?.username, score: currentCorrect}})
+            setLeaderSubmit(true);
+        }
     } 
     const resetSelection = () => {
         const radioButtons = document.getElementsByName('answer') as NodeListOf<HTMLInputElement>;
@@ -319,6 +324,7 @@ const Trivia = () => {
                             setCurrentIncorrect(0);
                             setQuestionNumber(0);
                             setAnswerCorrect(undefined);
+                            setLeaderSubmit(false);
                             const resetTrivia = async () => {
                                 const response = await fetchTrivia();
                                 let answers = randomizeAnswers(response, 0);
@@ -337,7 +343,9 @@ const Trivia = () => {
                         onClick={handleLeaderboard}
                         className="btn btn-primary mt-3"
                         style={{ padding: '10px 20px', fontSize: '1.2em', borderRadius: '5px' }}                   
-                    >Submit to Leaderboard</button>
+                    >Submit to Leaderboard
+                    </button>
+                    { leaderSubmit ? <div>Your score is submitted!</div> : <></>}
                 </div>
             ) : (
                 <p>Loading...</p>
