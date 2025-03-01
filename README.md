@@ -8,15 +8,16 @@ For the EDX U of M full stack bootcamp.
 Mind-Mash is a web based trivia game which uses an external trivia api to deliver questions to the user. The user score is then totalled using MongoDB so users can keep consistent track of their Trivia Aptitude. It uses React for the front end, GraphQL with a Node.js and Express.js server, MongoDB and the Mongoose ODM for the database, and queries and mutations for retrieving, adding, updating, and deleting data. User login info is authenticated using JWT. 
 
 
-## MOCK-UP 
+## Mock-Up 
 
 
                       `The Screenshot Is Shown Below`
                       
-                      ## SAMPLE
+                    
 
                                  
-![ ](<Project3 Render.png>)
+![Mind-Mash](https://github.com/user-attachments/assets/1ec5834a-87b5-42ef-9ca7-902a22b2c709)
+
 ![ ](<Project3 Mock-up 1.png>) 
 
 
@@ -69,11 +70,11 @@ This project is licensed under the MIT license and Apache 2.0. See the LICENSE f
 Contribution is welcome and also feel free to download, fork, use, and play with the codes as desired.
 
 ## Tests
-To test the code, initiate the server by executing the command ??????`npm run server:dev`. Subsequently, open a separate terminal and run the command ???`npm run test`. This action will execute the component test `Quiz.cy.tsx` as well as the end-to-end test `quiz.cy.ts`. With the server still operational, you may run `npm run cypress`, provided that it is installed. This will launch Cypress, from which you can conduct both the Component and end-to-end tests.
+To test the code, initiate the server by executing the command `npm install react react-dom`, `npm install --save-dev vite`, `npm install express apollo-server-express graphql mongoose` to run the code use `npm run start:dev`.
 
-## ### Tools 
+## Tools 
 
-[Bootstrap](https://getbootstrap.com/) - modal, toast
+[Bootstrap](https://getbootstrap.com/) - Modal, Toast
 
 ## [Render Link](https://project-3-trivia-app.onrender.com)
 ## [GitHub Link](https://github.com/lucashallman/Project-3-Mind-Mash/) 
@@ -81,5 +82,5 @@ To test the code, initiate the server by executing the command ??????`npm run se
 
 ## For Questions, please reach out to:
  
-- GitHubs: 
-- Emails: 
+- GitHubs: https://github.com/lucashallman/Project-3-Mind-Mash
+- Emails:https://github.com/lucashallman,https://github.com/Hassansalam4,https://github.com/samstan0926,https://github.com/Sierra217,https://github.com/elele20005
