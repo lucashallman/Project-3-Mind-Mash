@@ -56,6 +56,8 @@ If running locally, use the command "npm run start:dev" to see the full app func
 ## Credits
 Credit goes to all the group members. 
 
+Some of the code provided by edX Coding Bootcamp through the University of Minnesota.
+
 Lucas - Profile and Leaderboard logic, workflow and deployment, Login-Page      
 
 Sam  - APIs, Login-Page         
@@ -75,8 +77,6 @@ This project is licensed under the MIT license and Apache 2.0. See the LICENSE f
 ## Contribution
 Contribution is welcome and also feel free to download, fork, use, and play with the codes as desired.
 
-## Tests
-To test the code, initiate the server by executing the command `npm install react react-dom`, `npm install --save-dev vite`, `npm install express apollo-server-express graphql mongoose` to run the code use `npm run start:dev`.
 
 ## Tools 
 
@@ -92,5 +92,5 @@ Github Link: https://github.com/lucashallman/Project-3-Mind-Mash
  
 - GitHubs: https://github.com/lucashallman/Project-3-Mind-Mash
 
-- Emails:samstan092@gmail.com, lucas.hallmanc@gmail.com, atuman4@gmail.com, elele20005@gmail.com, sierraolson217@gmail.com.
+- Emails: samstan092@gmail.com, lucas.hallmanc@gmail.com, atuman4@gmail.com, elele20005@gmail.com, sierraolson217@gmail.com.
 

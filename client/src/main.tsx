@@ -8,7 +8,7 @@ import Home from './pages/Home';
 import Riddle from './pages/Riddles';
 import Profile from './pages/Profile'
 import Signup from './pages/Signup';
-import Stats from './pages/Stats';
+
 import Leaderboard from './pages/Leaderboard';
 import Login from './pages/Login';
 
@@ -36,10 +36,6 @@ const router = createBrowserRouter([
       {
         path: 'Signup',
         element: <Signup />
-      },
-      {
-        path: 'Stats',
-        element: <Stats />
       },
       {
         path: 'Leaderboard',

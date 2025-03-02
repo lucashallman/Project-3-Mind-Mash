@@ -33,7 +33,6 @@ const Navigation = () => {
                 <li><NavLink to="/leaderboard" className={({ isActive }) => (isActive ? 'active' : '')}>Leaderboard</NavLink></li>
 
                 <li><NavLink to={userNavLink} className={({ isActive }) => (isActive ? 'active' : '')}>Profile</NavLink></li>
-                <li><NavLink to="/stats" className={({ isActive }) => (isActive ? 'active' : '')}>Stats</NavLink></li>
                 <li><NavLink to="/signup" className={({ isActive }) => (isActive ? 'active' : '')}>Signup</NavLink></li>
                 <li><NavLink to="/login" className={({ isActive }) => (isActive ? 'active' : '')}>Login</NavLink></li>
             </ul>
