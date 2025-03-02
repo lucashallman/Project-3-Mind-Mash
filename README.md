@@ -3,7 +3,7 @@ A web based trivia competition!
 For the EDX U of M full stack bootcamp.
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) 
 
-## Description: MERN Stack Single-Page Application, React, MongoDB, GraphQL and Node.js/Express.js server
+## Description: MERN Stack Single-Page Application, React, ANT framework and custom CSS,  GraphQL, Node.js, Express.js server, MongoDB, Web API’s.
 
 Mind-Mash is a web based trivia game which uses an external trivia api to deliver questions to the user. The user score is then totalled using MongoDB so users can keep consistent track of their Trivia Aptitude. It uses React for the front end, GraphQL with a Node.js and Express.js server, MongoDB and the Mongoose ODM for the database, and queries and mutations for retrieving, adding, updating, and deleting data. User login info is authenticated using JWT. 
 
@@ -18,8 +18,7 @@ Mind-Mash is a web based trivia game which uses an external trivia api to delive
                                  
 ![Mind-Mash](https://github.com/user-attachments/assets/1ec5834a-87b5-42ef-9ca7-902a22b2c709)
 
-![ ](<Project3 Mock-up 1.png>) 
-
+![Project3 Render](https://github.com/user-attachments/assets/668e9c6b-0741-4cc7-9f28-e8afafca5176)
 
 
 
@@ -55,11 +54,11 @@ If running locally, use the command "npm run start:dev" to see the full app func
 ## Credits
 Credit goes to all the group members. 
 
-Lucas -----  created ....., 
-Sierra ------wrote ....., 
-Atoumane ------- created ......
-Samuel ------  did ......, 
-Rafiu --------created the Auth....
+Lucas - Profile and Leaderboard logic, workflow and deployment    
+Sam  - APIs     
+Rafiu  - ReadMe, Login-Page        
+Sierra - react, CSS/framework, Routing, Pages, Components        
+Atoumane - Graphql,Mongoose
 
 ## License
 This project is licensed under the MIT license and Apache 2.0. See the LICENSE file for details.
@@ -76,11 +75,11 @@ To test the code, initiate the server by executing the command `npm install reac
 
 [Bootstrap](https://getbootstrap.com/) - Modal, Toast
 
-## [Render Link](https://project-3-trivia-app.onrender.com)
-## [GitHub Link](https://github.com/lucashallman/Project-3-Mind-Mash/) 
+Deployed Link: https://project-3-trivia-app.onrender.com   
+Github Link: https://github.com/lucashallman/Project-3-Mind-Mash 
 
 
 ## For Questions, please reach out to:
  
 - GitHubs: https://github.com/lucashallman/Project-3-Mind-Mash
-- Emails:https://github.com/lucashallman,https://github.com/Hassansalam4,https://github.com/samstan0926,https://github.com/Sierra217,https://github.com/elele20005
+- Emails:https://github.com/lucashallman,   https://github.com/Hassansalam4,   https://github.com/samstan0926,   https://github.com/Sierra217,  https://github.com/elele20005
