@@ -7,9 +7,10 @@ import App from './App';
 import Home from './pages/Home';
 import Riddle from './pages/Riddles';
 import Profile from './pages/Profile'
-import Signup from './pages/Signuplogin';
+import Signup from './pages/Signup';
 import Stats from './pages/Stats';
 import Leaderboard from './pages/Leaderboard';
+import Login from './pages/Login';
 
 const router = createBrowserRouter([
   {
@@ -29,7 +30,7 @@ const router = createBrowserRouter([
         element: <Riddle />
       },
       {
-        path: 'Profile',
+        path: 'Profile/:username',
         element: <Profile />
       },
       {
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
       {
         path: 'Leaderboard',
         element: <Leaderboard />
+      },
+      {
+        path: 'Login',
+        element: <Login />
       }
 
     ]

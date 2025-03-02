@@ -1,14 +1,14 @@
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 
-import { QUERY_ME } from "../utils/queries";
+import { QUERY_USER } from "../utils/queries";
 
 const Profile = () => {
 
-    const { userId } = useParams();
-    console.log('uid:', userId);
-    const { loading, data } = useQuery(QUERY_ME, {
-        variables: { profileId: userId },
+    const { username } = useParams();
+    console.log('username:', username);
+    const { loading, data } = useQuery(QUERY_USER, {
+        variables: { username: username },
     });
 
     const profile = data?.user || {
@@ -21,6 +21,7 @@ const Profile = () => {
         totalRiddleCount: 0,
         correctRiddleCount: 0
     };
+    console.log(data)
 
     if (loading) {
         return (<div>Loading...</div>)
@@ -28,12 +29,15 @@ const Profile = () => {
 
     const QuizAccuracy = () => {
         if (profile.totalTriviaCount > 0) {
-            return profile.correctTriviaCount / profile.totalTriviaCount;
+            const trimmedNumber =  Math.ceil((profile.correctTriviaCount / profile.totalTriviaCount) * 100);
+            return trimmedNumber;
         }
         return 0;
     }
 
-    return (
+    const noUser = <div><h2>Whoops! No User Here!</h2></div>
+
+    const formattedUser =
         <div className="profile-container anim-fadein">
             <h2 className="profilecard username">
                 {profile.username}
@@ -43,7 +47,11 @@ const Profile = () => {
             <p className="profilecard accuracy">Quiz Accuracy: {QuizAccuracy()}%</p>
 
         </div>
-    )
+
+    const display = data ? formattedUser : noUser;
+
+    return (display)
+
 }
 
 export default Profile;

@@ -1,9 +1,14 @@
 import { useEffect, useState } from 'react';
-import { fetchTrivia, randomizeAnswers, validateAnswer } from '../services/triviaService';
+import { useQuery, useMutation } from '@apollo/client';
+import { UPDATE_USER, ADD_LEADERBOARD_ENTRY } from '../utils/mutations';
+import { QUERY_ME1 } from '../utils/queries';
+import { fetchTrivia, randomizeAnswers, validateAnswer, convertSpecialCharacterCodes } from '../services/triviaService';
 import { ITrivia } from '../interfaces/Trivia';
+import { IUser } from '../interfaces/User';
 
 const Trivia = () => {
     const [trivia, setTrivia] = useState<ITrivia>();
+    const [user, setUser] = useState<IUser>()
     const [answers, setAnswers] = useState<string[]>([]);
     const [answerCorrect, setAnswerCorrect] = useState<boolean>();
     const [numberCorrect, setNumberCorrect] = useState<number>(0);
@@ -13,6 +18,21 @@ const Trivia = () => {
     const [showResults, setShowResults] = useState<boolean>(false);
     const [selectedAnswer, setSelectedAnswer] = useState<string>('');
     const [currentIncorrect, setCurrentIncorrect] = useState<number>(0);
+    const [updateUser] = useMutation(UPDATE_USER);
+    const [addLeaderboard] = useMutation(ADD_LEADERBOARD_ENTRY);
+
+    const { data } = useQuery(QUERY_ME1);
+
+    useEffect(() => {
+        console.log(data);
+        let userData;
+        if (data) {
+            userData = data?.me
+        }
+        console.log(userData)
+        setUser(userData);
+    }, [data])
+
     useEffect(() => {
         const storedNumberCorrect = localStorage.getItem('numberCorrect');
         if (storedNumberCorrect) {
@@ -64,6 +84,24 @@ const Trivia = () => {
         }
         setSelectedAnswer(selectedAnswer);
 
+        //increment saved total trivia
+        const oldTotal = user?.totalTriviaCount;
+        const newTotal = Number(oldTotal) + 1;
+        localStorage.setItem('scoreTotal', String(newTotal));
+        const userUpdateObj = {
+            username: user?.username || 'nouser',
+            fieldName: 'totalTriviaCount',
+            value: newTotal
+        }
+        try {
+            console.log(userUpdateObj)
+            const newData = updateUser({ variables: { input: userUpdateObj } });
+            console.log(newData);
+
+        } catch (err) {
+            console.error('error updating user data:', err);
+        }
+
         if (isCorrect) {
             setAnswerCorrect(true);
             const newCurrentCorrect = currentCorrect + 1;
@@ -71,6 +109,41 @@ const Trivia = () => {
             const newNumberCorrect = numberCorrect + 1;
             setNumberCorrect(newNumberCorrect);
 
+            // increment saved correct trivia
+            const oldCorrectTotal = user?.correctTriviaCount;
+            const newCorrectTotal = Number(oldCorrectTotal) + 1;
+            localStorage.setItem('scoreCorrect', String(newCorrectTotal));
+            const userUpdateObj1 = {
+                username: user?.username || 'nouser',
+                fieldName: 'correctTriviaCount',
+                value: newCorrectTotal
+            }
+            try {
+                console.log(userUpdateObj1)
+                const newData = updateUser({ variables: { input: userUpdateObj1 } });
+                console.log(newData);
+
+            } catch (err) {
+                console.error('error updating user data:', err);
+            }
+
+            // increment saved trivia point
+            const oldPoints = user?.triviapoints;
+            const newPoints = Number(oldPoints) + 1;
+            localStorage.setItem('scoreCorrect', String(newPoints));
+            const userUpdateObj2 = {
+                username: user?.username || 'nouser',
+                fieldName: 'triviapoints',
+                value: newPoints
+            }
+            try {
+                console.log(userUpdateObj2)
+                const newData = updateUser({ variables: { input: userUpdateObj2 } });
+                console.log(newData);
+
+            } catch (err) {
+                console.error('error updating user data:', err);
+            }
 
             localStorage.setItem('numberCorrect', newNumberCorrect.toString());
             radioButtons.forEach(radio => {
@@ -82,96 +155,17 @@ const Trivia = () => {
             setCurrentIncorrect(newCurrentIncorrect);
             const newNumberIncorrect = numberIncorrect + 1;
             setNumberIncorrect(newNumberIncorrect);
+
+            const oldTotal = localStorage.getItem('scoreTotal');
+            const newTotal = Number(oldTotal) + 1;
+            localStorage.setItem('scoreTotal', String(newTotal));
+
             localStorage.setItem('numberIncorrect', newNumberIncorrect.toString());
             radioButtons.forEach(radio => {
                 radio.disabled = true;
             });
         }
     };
-    const convertSpecialCharacterCodes = (response: any) => {
-        response.results.forEach((result: any) => {
-            result.question = result.question.replace(/&quot;/g, '"')
-                .replace(/&#039;/g, "'")
-                .replace(/&amp;/g, "&")
-                .replace(/&lt;/g, "<")
-                .replace(/&gt;/g, ">")
-                .replace(/&rsquo;/g, "'")
-                .replace(/&iuml;/g, "ï")
-                .replace(/&eacute;/g, "é")
-                .replace(/&aacute;/g, "á")
-                .replace(/&ouml;/g, "ö")
-                .replace(/&auml;/g, "ä")
-                .replace(/&uuml;/g, "ü")
-                .replace(/&shy;/g, "-")
-                .replace(/&ntilde;/g, "ñ")
-                .replace(/&iquest;/g, "¿")
-                .replace(/&oacute;/g, "ó")
-                .replace(/&uacute;/g, "ú")
-                .replace(/&egrave;/g, "è")
-                .replace(/&igrave;/g, "ì")
-                .replace(/&ograve;/g, "ò")
-                .replace(/&ugrave;/g, "ù")
-                .replace(/&ccedil;/g, "ç")
-                .replace(/&iexcl;/g, "¡")
-                .replace(/&iacute;/g, "í")
-
-            result.correct_answer = result.correct_answer.replace(/&quot;/g, '"')
-                .replace(/&#039;/g, "'")
-                .replace(/&amp;/g, "&")
-                .replace(/&lt;/g, "<")
-                .replace(/&gt;/g, ">")
-                .replace(/&rsquo;/g, "'")
-                .replace(/&iuml;/g, "ï")
-                .replace(/&eacute;/g, "é")
-                .replace(/&aacute;/g, "á")
-                .replace(/&ouml;/g, "ö")
-                .replace(/&auml;/g, "ä")
-                .replace(/&uuml;/g, "ü")
-                .replace(/&ntilde;/g, "ñ")
-                .replace(/&shy;/g, "-")
-                .replace(/&iquest;/g, "¿")
-                .replace(/&oacute;/g, "ó")
-                .replace(/&uacute;/g, "ú")
-                .replace(/&egrave;/g, "è")
-                .replace(/&igrave;/g, "ì")
-                .replace(/&ograve;/g, "ò")
-                .replace(/&ugrave;/g, "ù")
-                .replace(/&ccedil;/g, "ç")
-                .replace(/&iexcl;/g, "¡")
-                .replace(/&iquest;/g, "¿")
-                .replace(/&iacute;/g, "í")
-
-            result.incorrect_answers = result.incorrect_answers.map((answer: string) =>
-                answer.replace(/&quot;/g, '"')
-                    .replace(/&#039;/g, "'")
-                    .replace(/&amp;/g, "&")
-                    .replace(/&lt;/g, "<")
-                    .replace(/&gt;/g, ">")
-                    .replace(/&rsquo;/g, "'")
-                    .replace(/&iuml;/g, "ï")
-                    .replace(/&eacute;/g, "é")
-                    .replace(/&aacute;/g, "á")
-                    .replace(/&ouml;/g, "ö")
-                    .replace(/&auml;/g, "ä")
-                    .replace(/&uuml;/g, "ü")
-                    .replace(/&ntilde;/g, "ñ")
-                    .replace(/&shy;/g, "-")
-                    .replace(/&iexcl;/g, "¡")
-                    .replace(/&iquest;/g, "¿")
-                    .replace(/&oacute;/g, "ó")
-                    .replace(/&uacute;/g, "ú")
-                    .replace(/&egrave;/g, "è")
-                    .replace(/&igrave;/g, "ì")
-                    .replace(/&ograve;/g, "ò")
-                    .replace(/&ugrave;/g, "ù")
-                    .replace(/&ccedil;/g, "ç")
-                    .replace(/&iacute;/g, "í")
-                    
-
-            );
-        });
-    }
-
 
     const handleNext = () => {
         setAnswerCorrect(undefined);
@@ -231,6 +225,15 @@ const Trivia = () => {
 
 
     }
+
+    const [leaderSubmit, setLeaderSubmit] = useState<Boolean>(false);
+
+    const handleLeaderboard = () => {
+        if (!leaderSubmit) {
+            addLeaderboard({variables: {username: user?.username, score: currentCorrect}})
+            setLeaderSubmit(true);
+        }
+    } 
     const resetSelection = () => {
         const radioButtons = document.getElementsByName('answer') as NodeListOf<HTMLInputElement>;
         radioButtons.forEach(radio => {
@@ -321,6 +324,7 @@ const Trivia = () => {
                             setCurrentIncorrect(0);
                             setQuestionNumber(0);
                             setAnswerCorrect(undefined);
+                            setLeaderSubmit(false);
                             const resetTrivia = async () => {
                                 const response = await fetchTrivia();
                                 let answers = randomizeAnswers(response, 0);
@@ -335,6 +339,13 @@ const Trivia = () => {
                     >
                         Restart Quiz
                     </button>
+                    <button
+                        onClick={handleLeaderboard}
+                        className="btn btn-primary mt-3"
+                        style={{ padding: '10px 20px', fontSize: '1.2em', borderRadius: '5px' }}                   
+                    >Submit to Leaderboard
+                    </button>
+                    { leaderSubmit ? <div>Your score is submitted!</div> : <></>}
                 </div>
             ) : (
                 <p>Loading...</p>
@@ -344,4 +355,3 @@ const Trivia = () => {
 }
 
 export default Trivia;
-

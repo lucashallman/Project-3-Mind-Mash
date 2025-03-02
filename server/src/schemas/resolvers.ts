@@ -1,14 +1,45 @@
 import {  User } from '../models/index.js';
 import Leaderboard from '../models/Leaderboard.js';
 import { signToken, AuthenticationError } from '../utils/auth.js'; 
+interface User {
+  _id: string;
+  name: string;
+  email: string;
+  password: string;
+  correctTriviaCount?: number;
+  totalTriviaCount?: number;
+  correctRiddleCount?: number;
+  totalRiddleCount?: number;
+}
+
+interface AddUserArgs {
+  input:{
+    username: string;
+    email: string;
+    password: string;
+  }
+}
+
+interface LoginUserArgs {
+  email: string;
+  password: string;
+}
 
 
+interface Context {
+  user?: User;
+}
 
+// interface updateUserArgs {
+//   username: string;
+//   fieldName: string;
+//   value: number;
+// }
 
 const resolvers = {
   Query: {
  
-    me: async (_parent: any, _args: any, context: any) => {
+    me: async (_parent: any, _args: any, context: Context): Promise<User | null> => {
      
       if (context.user) {
         return User.findOne({ _id: context.user._id })//.populate('thoughts');
@@ -19,9 +50,21 @@ const resolvers = {
     getLeaderboard: async () => {
       return await Leaderboard.find().sort({ score: -1 }).limit(10);
     },
+    user: async (_: any,  { username }: { username: String} ) => {
+      try {
+        const user = await User.findOne({ username });
+        if (!user) {
+          throw new Error(`User with username ${username} not found`);
+        }
+        return user;
+      } catch (error) {
+        console.error(error);
+        throw new Error('Server error while fetching user');
+      }
+    },
   },
   Mutation: {
-    addUser: async (_parent: any, { input }: any) => {
+    addUser: async (_parent: any, { input }: AddUserArgs) => {
       // Create a new user with the provided username, email, and password
       const user = await User.create({ ...input });
     
@@ -32,7 +75,7 @@ const resolvers = {
       return { token, user };
     },
     
-    login: async (_parent: any, { email, password }: any) => {
+    login: async (_parent: any, { email, password }: LoginUserArgs) => {
       // Find a user with the provided email
       const user = await User.findOne({ email });
     
@@ -58,6 +101,32 @@ const resolvers = {
     addScore: async (_:any, {username, score}: { username: string; score: number}) => {
       const newEntry = new Leaderboard({ username, score });
       return await newEntry.save();
+    },
+    updateUserScore: async (_: any, { input}: {input: { username: string, fieldName: string, value: number}}) => {
+
+      const { username, fieldName, value } = input;
+      const allowedFields = [
+        'triviapoints',
+        'correctTriviaCount',
+        'totalTriviaCount',
+        'correctRiddleCount',
+        'totalRiddleCount'
+      ];
+      console.log(username, fieldName, value);
+
+      if (!allowedFields.includes(fieldName)) {
+        throw new Error(`Invalid field name, ${fieldName} is not a user field.`)
+      }
+
+      const updateData = { [fieldName]: value}
+
+      const updatedUser = await User.findOneAndUpdate(
+        { username }, 
+        { $set: updateData },
+        { new: true, runValidators: true}
+      )
+
+      return updatedUser;
     }
    
   },
