@@ -18,7 +18,8 @@ Mind-Mash is a web based trivia game which uses an external trivia api to delive
                                  
 ![Mind-Mash](https://github.com/user-attachments/assets/1ec5834a-87b5-42ef-9ca7-902a22b2c709)
 
-![ ](<Project3 Mock-up 1.png>) 
+![Project3 Render](https://github.com/user-attachments/assets/01560c71-6f67-4dd1-92cf-8f68c188b643)
+
 
 
 
@@ -55,11 +56,11 @@ If running locally, use the command "npm run start:dev" to see the full app func
 ## Credits
 Credit goes to all the group members. 
 
-Lucas -----  created ....., 
-Sierra ------wrote ....., 
-Atoumane ------- created ......
-Samuel ------  did ......, 
-Rafiu --------created the Auth....
+Lucas - 
+Sam  - APIs
+Rafiu   - ReadMe, Login-Page
+Sierra - react, css/framework, routing, pages, components
+Atoumane - Graphql, Mongoose
 
 ## License
 This project is licensed under the MIT license and Apache 2.0. See the LICENSE file for details.
@@ -76,11 +77,11 @@ To test the code, initiate the server by executing the command `npm install reac
 
 [Bootstrap](https://getbootstrap.com/) - Modal, Toast
 
-## [Render Link](https://project-3-trivia-app.onrender.com)
-## [GitHub Link](https://github.com/lucashallman/Project-3-Mind-Mash/) 
+## Deployed Link: https://project-3-trivia-app.onrender.com
+## Github Link: https://github.com/lucashallman/Project-3-Mind-Mash
 
 
 ## For Questions, please reach out to:
  
 - GitHubs: https://github.com/lucashallman/Project-3-Mind-Mash
-- Emails:https://github.com/lucashallman,https://github.com/Hassansalam4,https://github.com/samstan0926,https://github.com/Sierra217,https://github.com/elele20005
+- Emails:https://github.com/lucashallman,   https://github.com/Hassansalam4,   https://github.com/samstan0926,    https://github.com/Sierra217,   https://github.com/elele20005
