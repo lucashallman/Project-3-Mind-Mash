@@ -3,7 +3,8 @@ A web based trivia competition!
 For the EDX U of M full stack bootcamp.
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) 
 
-## Description: MERN Stack Single-Page Application, React, ANT framework and custom CSS,  GraphQL, Node.js, Express.js server, MongoDB, Web API’s.
+## Description
+This was built using MERN Stack Single-Page Application, React, ANT framework and custom CSS,  GraphQL, Node.js, Express.js server, MongoDB, Web API’s.
 
 Mind-Mash is a web based trivia game which uses an external trivia api to deliver questions to the user. The user score is then totalled using MongoDB so users can keep consistent track of their Trivia Aptitude. It uses React for the front end, GraphQL with a Node.js and Express.js server, MongoDB and the Mongoose ODM for the database, and queries and mutations for retrieving, adding, updating, and deleting data. User login info is authenticated using JWT. 
 
@@ -27,23 +28,22 @@ Mind-Mash is a web based trivia game which uses an external trivia api to delive
 
 
 
-The README includes sections for Description, Installation, Usage,Credits, License, Contributions, Tests, and Questions.   
 
 
 ## Table of Contents
 
--Description     
--Installation      
--Usage     
--Credits    
--License         
--Contribution       
--Tests         
--Questions
+
+- [Description](#description)  
+- [Installation](#installation)  
+- [Usage](#usage)  
+- [Credits](#credits)  
+- [License](#license)
+- [Contribution](#contribution)  
+- [Questions](#questions)  
 
 ## Installation
 
-A local version can be cloned from the github repository.
+A local version can be cloned from the github repository found here: https://github.com/lucashallman/Project-3-Mind-Mash
  
 ## Usage
 
@@ -81,16 +81,11 @@ Contribution is welcome and also feel free to download, fork, use, and play with
 ## Tools 
 
 [Bootstrap](https://getbootstrap.com/) - Modal, Toast
-
-
-Deployed Link: https://project-3-trivia-app.onrender.com   
-Github Link: https://github.com/lucashallman/Project-3-Mind-Mash 
-
+React, ANT framework,  GraphQL, Node.js, Express.js server, MongoDB, and Web API’s.
 
 
 ## For Questions, please reach out to:
  
-- GitHubs: https://github.com/lucashallman/Project-3-Mind-Mash
 
 - Emails: samstan092@gmail.com, lucas.hallmanc@gmail.com, atuman4@gmail.com, elele20005@gmail.com, sierraolson217@gmail.com.
 
