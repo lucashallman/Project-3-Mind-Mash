@@ -56,11 +56,14 @@ If running locally, use the command "npm run start:dev" to see the full app func
 ## Credits
 Credit goes to all the group members. 
 
+Lucas - Profile and Leaderboard logic, workflow and deployment, Login-Page      
 
-Lucas - Profile and Leaderboard logic, workflow and deployment    
-Sam  - APIs     
-Rafiu  - ReadMe, Login-Page        
-Sierra - react, CSS/framework, Routing, Pages, Components        
+Sam  - APIs, Login-Page         
+
+Rafiu  - ReadMe, Login-Page            
+
+Sierra - react, CSS/framework, Routing, Pages, Components           
+
 Atoumane - Graphql,Mongoose
 
 
@@ -89,5 +92,5 @@ Github Link: https://github.com/lucashallman/Project-3-Mind-Mash
  
 - GitHubs: https://github.com/lucashallman/Project-3-Mind-Mash
 
-- Emails:https://github.com/lucashallman,   https://github.com/Hassansalam4,   https://github.com/samstan0926,   https://github.com/Sierra217,  https://github.com/elele20005
+- Emails:samstan092@gmail.com, lucas.hallmanc@gmail.com, atuman4@gmail.com, elele20005@gmail.com, sierraolson217@gmail.com.
 
