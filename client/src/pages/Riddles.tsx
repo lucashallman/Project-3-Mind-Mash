@@ -121,7 +121,7 @@ const Riddles = () => {
                         setShowAnswer(false);
                         setResult('');
                         setUserAnswer('');
-                        getRiddle();
+                        
                         window.location.reload();
                     }}
                     className="btn btn-primary mt-3"
